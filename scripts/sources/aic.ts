@@ -55,21 +55,26 @@ export async function fetchAic(opts: FetchOptions): Promise<RawRecord[]> {
   }
   opts.log(`aic: ${out.size} boosted works`);
 
+  // Deep pagination is refused for anonymous clients (HTTP 403 past ~1,000 results), so to
+  // sample across a department we query random windows of the id space instead.
+  const seed = Number(new Date().toISOString().slice(0, 7).replace('-', ''));
+  let k = 0;
   for (const [dept, share] of DEPARTMENTS) {
     const want = Math.round(opts.limit * 0.65 * share);
-    const filter = [{ match: { department_title: dept } }];
-    const first = await search(filter, 1);
-    if (!first) continue;
-    const totalPages = Math.min(first.pagination.total_pages, 99);
+    const deptFilter = { match_phrase: { department_title: dept } };
+    const first = await search([deptFilter], 1);
+    if (!first?.data?.length) {
+      opts.log(`aic: ${dept}: no results`);
+      continue;
+    }
     add(first.data);
-    // Spread requests across the result list rather than taking only the first pages.
-    const pages = Math.ceil(want / 100);
-    for (let k = 1; k < pages; k++) {
-      const p = 1 + Math.floor((k * totalPages) / pages);
-      const res = await search(filter, p);
+    const windows = Math.max(1, Math.ceil(want / 60));
+    for (let w = 0; w < windows; w++) {
+      const start = Math.floor(((seed * 7919 + ++k * 104729) % 1000) / 1000 * 250000);
+      const res = await search([deptFilter, { range: { id: { gte: start, lt: start + 25000 } } }], 1);
       add(res?.data);
     }
-    opts.log(`aic: ${dept}: ${first.pagination.total} candidates`);
+    opts.log(`aic: ${dept}: ${first.pagination.total} candidates, ${out.size} records so far`);
   }
   return [...out.values()];
 }

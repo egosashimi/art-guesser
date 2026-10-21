@@ -13,7 +13,7 @@ const DEPARTMENTS: [string, number][] = [
   ['Chinese Art', 0.08],
   ['Japanese Art', 0.07],
   ['Korean Art', 0.03],
-  ['Indian and South East Asian Art', 0.09],
+  ['Indian and Southeast Asian Art', 0.09],
   ['Islamic Art', 0.06],
   ['Egyptian and Ancient Near Eastern Art', 0.06],
   ['Greek and Roman Art', 0.05],

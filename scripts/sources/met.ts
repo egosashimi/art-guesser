@@ -4,6 +4,7 @@ import { categorize } from '../categorize.ts';
 import { clean, getJson, pool, seededShuffle, type FetchOptions, type RawRecord } from './common.ts';
 
 const API = 'https://collectionapi.metmuseum.org/public/collection/v1';
+const API_SEARCH = 'https://collectionapi.metmuseum.org/public/collection/v1.1/search';
 
 // departmentId → share of the Met budget. Weighted toward the departments that hold the
 // non-European and pre-modern material the game is built around.
@@ -26,26 +27,40 @@ const DEPARTMENTS: [number, string, number][] = [
   [8, 'The Costume Institute', 0.04],
 ];
 
-async function searchIds(params: string): Promise<number[]> {
-  for (const q of ['*', '']) {
-    const r = await getJson<{ total: number; objectIDs: number[] | null }>(`${API}/search?${params}&q=${encodeURIComponent(q)}`);
-    if (r?.objectIDs?.length) return r.objectIDs;
+/**
+ * IDs from the paginated v1.1 search (the v1 search was retired on 2026-10-01).
+ * Takes up to `want` ids from random pages so we don't always get the same first results.
+ */
+async function searchIds(params: string, want: number, seed: number): Promise<number[]> {
+  const page = (offset: number, limit: number) =>
+    getJson<{ total: number; objectIDs: number[] | null }>(`${API_SEARCH}?${params}&offset=${offset}&limit=${limit}`, { delayMs: 100 });
+  const first = await page(0, 500);
+  if (!first) return [];
+  const ids = [...(first.objectIDs ?? [])];
+  const reachable = Math.min(first.total ?? 0, 10000);
+  if (ids.length >= want || reachable <= ids.length) return ids;
+  const offsets: number[] = [];
+  for (let o = 500; o < reachable; o += 500) offsets.push(o);
+  for (const o of seededShuffle(offsets, seed).slice(0, Math.ceil((want - ids.length) / 500))) {
+    const r = await page(o, 500);
+    ids.push(...(r?.objectIDs ?? []));
   }
-  return [];
+  return ids;
 }
 
 export async function fetchMet(opts: FetchOptions): Promise<RawRecord[]> {
   const seed = Number(new Date().toISOString().slice(0, 7).replace('-', ''));
   const chosen = new Set<number>();
 
-  const highlights = await searchIds('isHighlight=true&hasImages=true');
+  const highlights = await searchIds('isHighlight=true&hasImages=true', 3000, seed);
   opts.log(`met: ${highlights.length} highlights`);
   for (const id of seededShuffle(highlights, seed).slice(0, Math.round(opts.limit * 0.3))) chosen.add(id);
 
   for (const [dept, name, share] of DEPARTMENTS) {
     const budget = Math.round(opts.limit * 0.7 * share);
-    let ids = await searchIds(`departmentId=${dept}&hasImages=true&isOnView=true`);
-    if (ids.length < budget) ids = ids.concat(await searchIds(`departmentId=${dept}&hasImages=true`));
+    const want = Math.round(budget * 3);
+    let ids = await searchIds(`departmentId=${dept}&hasImages=true&isOnView=true`, want, seed + dept);
+    if (ids.length < want) ids = ids.concat(await searchIds(`departmentId=${dept}&hasImages=true`, want - ids.length, seed + dept));
     opts.log(`met: ${name}: ${ids.length} candidates, taking ${budget}`);
     // Over-sample: many records turn out not to be public domain or can't be geocoded.
     for (const id of seededShuffle([...new Set(ids)], seed + dept).slice(0, Math.round(budget * 1.6))) chosen.add(id);

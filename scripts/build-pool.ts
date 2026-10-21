@@ -135,7 +135,7 @@ async function main() {
       url: r.url,
       credit: trim(r.credit, 160),
       ...(r.hl ? { hl: 1 as const } : {}),
-      bucket: normalize(r.culture || g.matched).replace(/\([^)]*\)/g, '').trim(),
+      bucket: bucketKey(r.culture || g.matched),
     });
   }
 
@@ -206,6 +206,16 @@ function report(objs: ArtObject[], rejected: Record<string, number>, unmatched: 
     `### Most common unmatched place/culture strings (add to scripts/gazetteer.ts)\n\n` +
       [...unmatched.entries()].sort((a, b) => b[1] - a[1]).slice(0, 150).map(([k, v]) => `- \`${k}\` × ${v}`).join('\n') + '\n',
   ].join('\n');
+}
+
+/** Culture label without periods, dynasties, centuries and maker notes: "Japan, Edo period (1615–1868)" → "japan". */
+function bucketKey(s: string): string {
+  const parts = normalize(s)
+    .replace(/\([^)]*\)/g, '')
+    .split(/[,;]/)
+    .map((p) => p.trim())
+    .filter((p) => p && !/period|dynasty|century|reign|sultanate|maker|style|\d|early|late|middle|unknown|probably|possibly/.test(p));
+  return parts.join(', ') || normalize(s);
 }
 
 const round = (n: number, d: number) => Math.round(n * 10 ** d) / 10 ** d;
