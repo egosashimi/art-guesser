@@ -1,4 +1,4 @@
-export type SourceId = 'met' | 'aic' | 'cma';
+export type SourceId = 'met' | 'aic' | 'cma' | 'vam' | 'rijks' | 'tepapa' | 'smvk';
 
 export type Category = 'painting' | 'sculpture' | 'textile' | 'ceramic' | 'metal' | 'paper' | 'other';
 
@@ -16,6 +16,21 @@ export const SOURCE_NAMES: Record<SourceId, string> = {
   met: 'The Metropolitan Museum of Art',
   aic: 'Art Institute of Chicago',
   cma: 'Cleveland Museum of Art',
+  vam: 'Victoria and Albert Museum, London',
+  rijks: 'Rijksmuseum, Amsterdam',
+  tepapa: 'Te Papa Tongarewa, Wellington',
+  smvk: 'National Museums of World Culture, Sweden',
+};
+
+/** Image licence per source, shown in credits. */
+export const SOURCE_LICENCE: Record<SourceId, string> = {
+  met: 'CC0',
+  aic: 'CC0',
+  cma: 'CC0',
+  vam: '© V&A, non-commercial use',
+  rijks: 'Public domain',
+  tepapa: 'per-object licence',
+  smvk: 'open licence (CC0 / CC BY / PD)',
 };
 
 /** One playable object in public/data/pool.json. Field names are short to keep the file small. */

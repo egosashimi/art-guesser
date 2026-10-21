@@ -18,6 +18,8 @@ import type { FetchOptions, RawRecord } from './sources/common.ts';
 import { fetchMet } from './sources/met.ts';
 import { fetchAic } from './sources/aic.ts';
 import { fetchCma } from './sources/cma.ts';
+import { fetchVam } from './sources/vam.ts';
+import { fetchRijks } from './sources/rijks.ts';
 
 const require = createRequire(import.meta.url);
 const ROOT = new URL('..', import.meta.url).pathname;
@@ -32,12 +34,14 @@ const opt = (name: string, dflt: string) => {
   return i >= 0 ? args[i + 1] : dflt;
 };
 
-const FETCHERS: Record<SourceId, (o: FetchOptions) => Promise<RawRecord[]>> = {
+const FETCHERS: Partial<Record<SourceId, (o: FetchOptions) => Promise<RawRecord[]>>> = {
   met: fetchMet,
   aic: fetchAic,
   cma: fetchCma,
+  vam: fetchVam,
+  rijks: fetchRijks,
 };
-const LIMITS: Record<SourceId, number> = { met: 4500, aic: 2500, cma: 3000 };
+const LIMITS: Partial<Record<SourceId, number>> = { met: 4500, aic: 2500, cma: 3000, vam: 2500, rijks: 1800 };
 
 // ── Filters ──────────────────────────────────────────────────────────────────
 const MIN_YEAR = -4000;
@@ -56,7 +60,7 @@ function maxSpan(y0: number, y1: number): number {
 
 async function main() {
   mkdirSync(RAW_DIR, { recursive: true });
-  const sources = opt('sources', 'met,aic,cma').split(',') as SourceId[];
+  const sources = opt('sources', Object.keys(FETCHERS).join(',')).split(',') as SourceId[];
   const scale = Number(opt('scale', '1'));
   const fromCache = flag('from-cache');
   // --only-fetch met: fetch just these sources, use the cache for the rest
@@ -71,8 +75,8 @@ async function main() {
       console.log(`\n▶ fetching ${src} (${cached.length} cached)`);
       let fresh: RawRecord[] = [];
       try {
-        fresh = await FETCHERS[src]({
-          limit: Math.round(LIMITS[src] * scale),
+        fresh = await FETCHERS[src]!({
+          limit: Math.round((LIMITS[src] ?? 1500) * scale),
           log: (m) => console.log('  ' + m),
           skip: new Set(cached.map((r) => r.srcId)),
         });

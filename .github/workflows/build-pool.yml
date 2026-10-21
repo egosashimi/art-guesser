@@ -9,8 +9,8 @@ on:
         description: 'Multiplier on per-source fetch limits (1 = ~10k candidate records)'
         default: '1'
       sources:
-        description: 'Comma-separated sources'
-        default: 'met,aic,cma'
+        description: 'Comma-separated sources (default: all)'
+        default: ''
   schedule:
     # Monthly: refresh every source.
     - cron: '17 6 1 * *'
@@ -50,9 +50,9 @@ jobs:
           if [ "${{ github.event_name }}" = "push" ] && [ -f data/raw/cma.json.gz ] && ! git diff --name-only HEAD~1 HEAD | grep -q 'scripts/sources/'; then
             node scripts/build-pool.ts --from-cache
           elif [ "${{ github.event.schedule }}" = "41 3 * * *" ]; then
-            node scripts/build-pool.ts --sources met,aic,cma --only-fetch met
+            node scripts/build-pool.ts --only-fetch met
           else
-            node scripts/build-pool.ts --scale "${{ inputs.scale || '1' }}" --sources "${{ inputs.sources || 'met,aic,cma' }}"
+            node scripts/build-pool.ts --scale "${{ inputs.scale || '1' }}" ${{ inputs.sources && format('--sources {0}', inputs.sources) || '' }}
           fi
       - name: Commit pool
         run: |

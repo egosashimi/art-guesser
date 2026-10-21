@@ -137,7 +137,8 @@ export function Home({ data, onPlay, onNav }: Props) {
       <footer class="home-foot muted small">
         <p>
           {data.objects.length.toLocaleString()} objects from the open-access collections of{' '}
-          {Object.values(SOURCE_NAMES).join(', ')}. Images are public domain / CC0. Not affiliated with any museum.
+          {[...new Set(data.objects.map((o) => o.src))].map((s) => SOURCE_NAMES[s]).join(', ')}. Images are public domain or
+          openly licensed (V&A images: © Victoria and Albert Museum, London, for non-commercial use). Not affiliated with any museum.
         </p>
         <p>Pool built {new Date(data.built).toLocaleDateString()}.{FEEDBACK_URL && <> · <a href={FEEDBACK_URL} target="_blank" rel="noopener">Playtest feedback ↗</a></>}</p>
       </footer>
