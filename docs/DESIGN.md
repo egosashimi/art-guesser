@@ -70,25 +70,29 @@ America/Caribbean. Each object is picked like this:
 7. Inside a group, picks spread across region, then culture bucket, then object, with penalties
    for repeating an era or medium in the same game.
 
-Simulation over 2,000 dailies on the current pool (`node scripts/pool-report.ts everything 2000`):
+Simulation over 2,000 dailies on the current pool of 7.7k objects from six museums
+(`node scripts/pool-report.ts everything 2000`):
 
 ```
 group                              pool target served   P(0)  P(1)  P(2) P(3+)
-Europe                               39%    24%    23%    7%   20%   29%   44%
-Africa                               14%    13%    13%   23%   41%   26%   10%
-Near East & Mediterranean Asia        5%    10%    11%   27%   46%   20%    6%
-Iran, Central & South Asia           13%    11%    12%   25%   45%   23%    7%
-East Asia                             9%    12%    12%   26%   40%   26%    8%
-Southeast Asia                        3%     6%     7%   48%   40%   10%    2%
-Oceania                               1%     7%     5%   58%   36%    5%    0%
-North America                        10%     7%     8%   42%   44%   12%    2%
-Latin America & Caribbean             7%    10%    10%   30%   46%   18%    6%
+Europe                               37%    24%    22%    7%   22%   29%   42%
+Africa                               10%    13%    13%   24%   41%   25%   10%
+Near East & Mediterranean Asia        5%    10%    11%   29%   45%   20%    6%
+Iran, Central & South Asia           12%    11%    11%   26%   43%   23%    7%
+East Asia                            18%    12%    11%   27%   42%   24%    7%
+Southeast Asia                        3%     6%     7%   49%   40%    9%    2%
+Oceania                               5%     7%     8%   42%   44%   12%    2%
+North America                         6%     7%     7%   44%   43%   11%    2%
+Latin America & Caribbean             4%    10%    10%   32%   45%   19%    5%
 ```
 
-Europe is 39% of the pool but 23% of what's served. Every non-European group is missing from a
+Europe is 37% of the pool but 22% of what's served. Every non-European group is missing from a
 quarter to a half of games and doubled up in many others, so its presence can't be predicted.
-Oceania is under target only because the pool currently holds just 26 Oceanic objects. The Met's
-Oceania holdings will fix that as its cache fills.
+Te Papa's Pacific collection lifted Oceania from 26 objects to about 350, enough to hit its target.
+
+**Paintings mode** is still thin outside Europe and Asia: Africa, Southeast Asia, Oceania and Latin
+America have very few open-access paintings in these museums. The scarcity rule keeps those few
+from repeating, so Gallery mode is roughly 30% European and heavy on Asian painting.
 
 ## 4. Scoring
 
@@ -108,8 +112,10 @@ All the numbers are in `src/config.ts`.
   can't match is listed in `data/report.md`.
 - Answers use **modern** countries, even for ancient objects. Mesopotamia shows up as Iraq.
 - "Made in" and "found in" are conflated when the museum only records a findspot.
-- Pool composition (current build, about 3.5k objects): AIC 50%, CMA 46%, Met 4%. The Met share
-  will rise as the daily top-up runs.
+- Pool composition (current build, 7.7k objects): Cleveland 29%, AIC 28%, V&A 27%, Rijksmuseum 9%,
+  Te Papa 4%, Met 3%. The Met share will rise as the daily top-up runs.
+- Diversity buckets are culture × medium × era (e.g. `china|ceramic|1200–1600`), capped at 60
+  objects each and interleaved across museums, so no single source fills a bucket.
 
 ## 6. Ideas not yet built
 

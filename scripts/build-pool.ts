@@ -51,7 +51,8 @@ const MAX_YEAR = 1950;
 /** `added` date for objects in the very first pool, so they're eligible for every Daily. */
 const BASELINE_ADDED = '2026-10-01';
 const MAX_RADIUS_KM = 1300;
-const MAX_PER_BUCKET = 80;
+/** Per culture × medium × era bucket. */
+const MAX_PER_BUCKET = 60;
 const EXCLUDE_KIND = /\b(photograph|negative|coin|token|weight|sherds?|shards?|ostracon|bead|beads|seal impression|sample|specimen|mount|frame|button|nail|tack|rivet|stopper|lid|cover fragment)\b/i;
 const EXCLUDE_TITLE = /\b(fragment of a|sherd|shard)\b/i;
 
@@ -170,7 +171,7 @@ async function main() {
       credit: trim(r.credit, 160),
       ...(r.hl ? { hl: 1 as const } : {}),
       added: previousAdded.get(id) ?? (previousAdded.size ? today : BASELINE_ADDED),
-      bucket: bucketKey(r.culture || g.matched),
+      bucket: `${bucketKey(r.culture || g.matched)}|${r.cat}|${eraOf(r.y0, r.y1)}`,
     });
   }
 
@@ -183,10 +184,15 @@ async function main() {
   }
   const final: ArtObject[] = [];
   for (const arr of byBucket.values()) {
-    arr.sort((a, b) => (b.hl ?? 0) - (a.hl ?? 0));
+    // Highlights first, then alternate between museums so no single source fills a bucket.
+    const bySrc = new Map<string, ArtObject[]>();
+    for (const o of arr.sort((a, b) => (b.hl ?? 0) - (a.hl ?? 0))) bySrc.set(o.src, [...(bySrc.get(o.src) ?? []), o]);
+    const queues = [...bySrc.values()];
+    const ordered: ArtObject[] = [];
+    while (queues.some((q) => q.length)) for (const q of queues) if (q.length) ordered.push(q.shift()!);
     const titles = new Map<string, number>();
     let kept = 0;
-    for (const o of arr) {
+    for (const o of ordered) {
       const t = normalize(o.title);
       const n = titles.get(t) ?? 0;
       if (n >= 2) { reject('duplicate title in bucket'); continue; }
@@ -251,6 +257,11 @@ function bucketKey(s: string): string {
     .map((p) => p.trim())
     .filter((p) => p && !/period|dynasty|century|reign|sultanate|maker|style|\d|early|late|middle|unknown|probably|possibly/.test(p));
   return parts.join(', ') || normalize(s);
+}
+
+function eraOf(y0: number, y1: number): number {
+  const m = (y0 + y1) / 2;
+  return m < -1000 ? 0 : m < 0 ? 1 : m < 600 ? 2 : m < 1200 ? 3 : m < 1600 ? 4 : m < 1800 ? 5 : 6;
 }
 
 const round = (n: number, d: number) => Math.round(n * 10 ** d) / 10 ** d;

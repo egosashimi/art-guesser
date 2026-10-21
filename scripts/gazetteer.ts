@@ -784,6 +784,53 @@ const RAW = `
 43,21,450|balkans|balkan
 41,45,300|transcaucasia|south caucasus
 
+# Dutch exonyms (Rijksmuseum records sometimes only have Dutch place labels)
+41.01,28.98,60|istanboel|istanbul|istanbul (city)|stamboul|pera|galata
+49.45,11.08,40|neurenberg
+45.46,9.19,50|milaan
+12.6,104.9,250|cambodja
+50.45,4.5,90|wallonie|wallonia
+46.2,6.15,30|geneve|genève
+13.5,80.2,250|coromandelkust|coromandel|coromandel coast
+20,80,900|voor-indie|voor-indië|brits-indie|brits-indië
+-7.05,113.4,60|madura|madoera
+-6.2,106.8,40|batavia|djakarta|jakarta|jacatra
+-6.9,107.6,80|west-java|west java|preanger|bandung
+35,135,350|japan (land)
+51.5,5,350|west-europa|west-europe|western europe
+52.2,5.08,15|loosdrecht|weesp|oud-loosdrecht
+50.55,7.9,60|westerwald|hohr-grenzhausen|grenzau
+50.67,6.11,15|raeren
+50.79,7.2,15|siegburg
+53.17,5.42,20|harlingen|makkum|bolsward|franeker
+52.13,4.43,15|voorschoten|den haag|'s-gravenhage
+52.37,4.9,40|noord-holland|noord holland|north holland
+51.69,5.3,40|'s-hertogenbosch|den bosch|noord-brabant|north brabant
+51.44,3.57,40|middelburg|zeeland|vlissingen|flushing
+53,-1.5,350|britain
+37.89,-4.87,15|madinat al-zahra|madinat al-zahra'|medina azahara
+35.77,-5.8,30|tangier|tanger|tangiers
+36.14,-5.35,15|gibraltar
+36.4,27.4,120|dodecanese|dodecanese islands
+36.2,28,50|rodhos|rhodos
+37.62,24.33,20|kea|keos
+33.27,35.2,20|tyre|sur
+35.04,32.42,20|polis|marion|polis chrysochous
+40.93,14.53,20|nola
+35.5,-97.5,300|oklahoma
+47,-109.6,350|montana
+52.63,-2.48,30|coalbrookdale|ironbridge|shropshire
+52.46,-2.15,20|stourbridge
+53.0,-2.18,20|cobridge|hanley|longton|fenton|tunstall
+52.77,-1.56,15|swadlincote
+48.78,2.29,10|sceaux
+52.95,-1.15,30|nottingham|nottinghamshire
+51.01,-3.1,30|taunton|somerset
+52.13,-0.47,30|bedford
+43.16,-77.61,30|rochester, new york
+44.01,-73.17,20|middlebury
+42.65,-71.3,40|lowell|chelmsford
+
 # ───────────── Broad regions (low precision) ─────────────
 10,-3,1100|west africa|western africa|west african|guinea coast
 -2,18,1000|central africa|central african|equatorial africa|congo basin
