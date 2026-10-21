@@ -27,13 +27,26 @@ publishes `main` to GitHub Pages. To turn that on, open **Settings → Pages →
 
 ## Data
 
-`public/data/pool.json` is built by `scripts/build-pool.ts` from three open-access APIs:
+`public/data/pool.json` is built by `scripts/build-pool.ts` from six open-access museum APIs:
 
-| Source | Licence | Notes |
-|---|---|---|
-| [The Met](https://metmuseum.github.io/) | CC0 | Best non-European holdings. Its bot protection blocks bulk requests from CI, so the Met cache grows a little each day (see below). |
-| [Art Institute of Chicago](https://api.artic.edu/docs/) | CC0 (public-domain works) | Strong on paintings, Asian and American art |
-| [Cleveland Museum of Art](https://openaccess-api.clevelandart.org/) | CC0 | Clean dates/cultures; whole small departments (e.g. Oceania) are fetched |
+| Source | Country | Image licence | Notes |
+|---|---|---|---|
+| [The Met](https://metmuseum.github.io/) | US | CC0 | Best non-European holdings. Its bot protection blocks bulk requests from CI, so the Met cache grows a little each day (see below). |
+| [Art Institute of Chicago](https://api.artic.edu/docs/) | US | CC0 (public-domain works) | Strong on paintings, Asian and American art |
+| [Cleveland Museum of Art](https://openaccess-api.clevelandart.org/) | US | CC0 | Clean dates/cultures; small departments (e.g. Oceania) fetched whole |
+| [Victoria and Albert Museum](https://developers.vam.ac.uk/) | UK | © V&A, free for non-commercial use | Searched by place of origin to lean on its Asian, Islamic and Mesoamerican holdings |
+| [Rijksmuseum](https://data.rijksmuseum.nl/) | Netherlands | Public domain | Linked Art data with precise production places (Haarlem, Tamil Nadu, Gandhara…) |
+| [Te Papa Tongarewa](https://data.tepapa.govt.nz/docs/) | New Zealand | CC BY-NC-ND or no known restrictions (per image) | Pacific Cultures collection only; fills the Oceania gap. Set a `TEPAPA_API_KEY` repo secret for production (free); otherwise a guest token is used. |
+
+Evaluated and **not** used, to keep the data clean:
+
+- Europeana, including the Swedish National Museums of World Culture: the "year" is often the acquisition date, and titles are mixed-language.
+- SMK Copenhagen: clean, but almost entirely European prints and drawings.
+- Nationalmuseum Sweden: many records have no date or image.
+- Louvre: has no search API.
+- Museums Victoria, Auckland Museum and Taiwan's National Palace Museum: blocked by Cloudflare from CI.
+
+The V&A and Te Papa licences are **non-commercial**. Fine for a free game, but they'd need revisiting before any monetisation.
 
 Pipeline: fetch → filter (public domain, has image, dated −4000…1950, date span not too vague) →
 **geocode** the free-text culture/place fields with an art-historical gazetteer

@@ -29,7 +29,7 @@ Sources: [Scientific American](https://www.scientificamerican.com/article/wordle
 | Region size as separate modes | Four map scales, each its own mode: **Continent** (6), **Region** (22 cultural regions), **Country**, **Pinpoint**. **Mixed Scale** changes the scale every round and says which on a banner. |
 | More modes | 12 presets (Classic, Continents, Regions, Countries, Mixed, Gallery, Artifacts, Time Traveler, Globetrotter, Close Look, Antiquity, Beyond Europe) × 4 formats, plus a custom builder covering every map scale, collection and format. Every combination has its own Daily. |
 | Paintings | A **Gallery** preset and a Paintings collection covering oil paintings, Chinese and Japanese scrolls, screens, Persian and Mughal miniatures, icons and thangkas. **Everything** mixes paintings in, and **Artifacts** recreates Anthropeum's no-paintings feel. |
-| More sources than the Met | The Met, the Art Institute of Chicago and the Cleveland Museum of Art, all CC0. The pipeline is modular; see §6 for candidates to add next. |
+| More sources than the Met | Six museums on three continents: the Met, Art Institute of Chicago and Cleveland (US), the V&A (UK), the Rijksmuseum (NL) and Te Papa (NZ, Pacific collection). Each was probed for data quality first. Europeana, SMK, Nationalmuseum Sweden and others were rejected; the README says why. |
 | Balance without predictability | Weighted random draws with no quotas. See §3. |
 
 Additions beyond the brief:

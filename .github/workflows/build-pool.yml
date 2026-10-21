@@ -46,6 +46,8 @@ jobs:
       # A push that only touches geocoding re-uses the committed raw cache (fast, no API load);
       # scheduled / manual runs fetch fresh data.
       - name: Build pool
+        env:
+          TEPAPA_API_KEY: ${{ secrets.TEPAPA_API_KEY }}
         run: |
           if [ "${{ github.event_name }}" = "push" ] && [ -f data/raw/cma.json.gz ] && ! git diff --name-only HEAD~1 HEAD | grep -q 'scripts/sources/'; then
             node scripts/build-pool.ts --from-cache

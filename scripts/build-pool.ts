@@ -20,6 +20,7 @@ import { fetchAic } from './sources/aic.ts';
 import { fetchCma } from './sources/cma.ts';
 import { fetchVam } from './sources/vam.ts';
 import { fetchRijks } from './sources/rijks.ts';
+import { fetchTepapa } from './sources/tepapa.ts';
 
 const require = createRequire(import.meta.url);
 const ROOT = new URL('..', import.meta.url).pathname;
@@ -40,8 +41,9 @@ const FETCHERS: Partial<Record<SourceId, (o: FetchOptions) => Promise<RawRecord[
   cma: fetchCma,
   vam: fetchVam,
   rijks: fetchRijks,
+  tepapa: fetchTepapa,
 };
-const LIMITS: Partial<Record<SourceId, number>> = { met: 4500, aic: 2500, cma: 3000, vam: 2500, rijks: 1800 };
+const LIMITS: Partial<Record<SourceId, number>> = { met: 4500, aic: 2500, cma: 3000, vam: 2500, rijks: 1800, tepapa: 700 };
 
 // ── Filters ──────────────────────────────────────────────────────────────────
 const MIN_YEAR = -4000;

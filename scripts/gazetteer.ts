@@ -386,7 +386,7 @@ const RAW = `
 -9.5,160,300|solomon islands|santa cruz islands|new georgia|malaita|guadalcanal
 19.6,-155.5,250|hawaii|hawai'i|hawaiian|hawaiian islands|kanaka maoli
 -9,-139.5,110|marquesas|marquesas islands|marquesan|nuku hiva|hiva oa
--17.6,-149.4,110|tahiti|society islands|tahitian|french polynesia
+-17.6,-149.4,110|tahiti|society islands|tahitian|french polynesia|polynesie francaise|fr. polynesia
 -23,-150,150|austral islands|rurutu|raivavae|ra'ivavae|tubuai
 -23.1,-134.95,40|mangareva|gambier islands
 -27.12,-109.35,25|rapa nui|easter island|rapanui

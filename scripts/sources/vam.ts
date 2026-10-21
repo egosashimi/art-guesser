@@ -52,7 +52,7 @@ export async function fetchVam(opts: FetchOptions): Promise<RawRecord[]> {
     }
     let n = 0;
     for (const h of seededShuffle(hits, seed)) {
-      if (n >= want * 1.4) break;
+      if (n >= want * 2) break;
       if (opts.skip?.has(h.systemNumber) || chosen.has(h.systemNumber)) continue;
       chosen.set(h.systemNumber, h);
       n++;
@@ -87,6 +87,7 @@ function toRecord(json: any, hit: Hit): RawRecord | null {
   const base = json.meta?.images?._iiif_image ?? hit._images?._iiif_image_base_url ?? (imageId ? `https://framemark.vam.ac.uk/collections/${imageId}/` : null);
   if (!base) return null;
   if (json.meta?.images?._images_meta?.some((m: any) => m.sensitiveImage)) return null;
+  if (/photograph|negative|lantern slide/i.test(r.objectType ?? '')) return null;
   const places: string[] = (r.placesOfOrigin ?? []).map((p: any) => clean(p.place?.text)).filter(Boolean);
   const maker = (r.artistMakerPerson ?? [])[0]?.name?.text;
   const title = clean(r.titles?.[0]?.title) || clean(r.objectType) || 'Untitled';
