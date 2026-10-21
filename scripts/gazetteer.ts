@@ -397,6 +397,26 @@ const RAW = `
 7.1,171.2,300|marshall islands|marshallese
 13.4,144.8,150|guam|mariana islands|chamorro
 -14,-171.5,200|polynesia|polynesian|western polynesia
+-9.2,-171.8,60|tokelau|fakaofo|nukunonu|atafu|tokelauan
+-8.5,179.2,150|tuvalu|tuvaluan|funafuti|ellice islands
+-19.05,-169.87,30|niue|niuean
+-0.53,166.93,20|nauru|nauruan
+-13.3,-176.2,40|wallis|uvea|'uvea|futuna|wallis and futuna
+-12.5,177.07,20|rotuma|rotuman
+-13.8,-171.75,60|upolu|'upolu|apia
+-13.6,-172.4,60|savai'i|savaii
+-14.3,-170.7,40|tutuila|american samoa|manu'a
+-21.13,-175.2,40|tongatapu|nuku'alofa
+-18.65,-173.98,50|vava'u|vavau
+-19.8,-174.4,40|ha'apai|haapai
+-18.1,178.4,60|viti levu|suva|rewa
+-16.6,179.3,60|vanua levu
+-18.4,-178.9,150|lau islands|lau group|lakeba
+-21.2,-159.78,25|rarotonga
+-10.0,-161.0,300|northern cook islands|penrhyn|tongareva|pukapuka|manihiki
+-15.4,167.7,150|espiritu santo|malakula|malekula|ambrym|pentecost|efate|tanna|erromango
+-21.4,167.9,100|loyalty islands|lifou|mare|ouvea
+-10.7,165.9,100|santa cruz|temotu|nendo
 -5.5,143,600|new guinea|new guinea island
 -6,152,800|melanesia|melanesian
 -2,-160,3000|oceania|pacific islands|south pacific|pacific

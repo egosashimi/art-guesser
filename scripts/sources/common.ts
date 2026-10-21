@@ -92,3 +92,62 @@ export function seededShuffle<T>(arr: T[], seed: number): T[] {
 export function clean(s: unknown): string {
   return typeof s === 'string' ? s.replace(/\s+/g, ' ').trim() : '';
 }
+
+/**
+ * Parses free-text dates as museums write them into [earliest, latest]:
+ * "1850", "c. 1850", "1850s", "1850-1870", "1850–70", "19th century", "late 19th century",
+ * "early 1900s", "before 1900", "500 BC", "200 BCE - 100 CE". Returns null if unsure.
+ */
+export function parseDateText(raw: string | null | undefined): [number, number] | null {
+  if (!raw) return null;
+  let s = raw.toLowerCase().replace(/[–—]/g, '-').replace(/\s+/g, ' ').trim();
+  const bc = /\b(b\.?c\.?e?\.?|bce)\b/.test(s) && !/\b(a\.?d\.?|c\.?e\.?)\b/.test(s.replace(/\bbce\b/g, ''));
+  const circa = /\b(circa|ca\.?|c\.|about|approx\.?)\s*\d/.test(s);
+  s = s.replace(/\b(circa|ca\.?|c\.|about|approx\.?|probably|possibly)\s*/g, '').trim();
+  const sign = (n: number, isBc = bc) => (isBc ? -n : n);
+  let m: RegExpMatchArray | null;
+
+  // "200 BCE - 100 CE": explicit era on each side
+  if ((m = s.match(/^(\d{1,4})\s*(bce|b\.?c\.?)\s*-\s*(\d{1,4})\s*(ce|a\.?d\.?)$/))) return [-m[1], +m[3]];
+  s = s.replace(/\s*\b(b\.?c\.?e?\.?|bce|a\.?d\.?|c\.?e\.?)(?=\s|$|-)/g, '').trim();
+
+  // "before 1900" / "by 1900" / "pre-1900"
+  if ((m = s.match(/^(?:before|by|pre-?)\s*(\d{3,4})$/))) return [sign(+m[1]) - 50, sign(+m[1])];
+
+  // "early|mid|late 19th century"
+  if ((m = s.match(/^(early|mid|middle|late)?[ -]?(\d{1,2})(?:st|nd|rd|th) century(?: [a-z.]+)?$/))) {
+    const c = +m[2];
+    let a = (c - 1) * 100;
+    let b = c * 100 - 1;
+    if (m[1] === 'early') b = a + 40;
+    else if (m[1] === 'mid' || m[1] === 'middle') [a, b] = [a + 30, a + 70];
+    else if (m[1] === 'late') a = a + 60;
+    return bc ? [-(c * 100), -((c - 1) * 100 + 1)] : [a, b];
+  }
+  // "1800s" / "early 1900s": a round hundred + s means the century
+  if ((m = s.match(/^(early|mid|late)?\s*(\d{2})00s$/))) {
+    const a = +m[2] * 100;
+    return m[1] === 'early' ? [a, a + 35] : m[1] === 'mid' ? [a + 30, a + 70] : m[1] === 'late' ? [a + 65, a + 99] : [a, a + 99];
+  }
+  // "1850s" / "late 1850s"
+  if ((m = s.match(/^(early|mid|late)?\s*(\d{3})0s$/))) {
+    const a = +m[2] * 10;
+    return m[1] === 'early' ? [a, a + 3] : m[1] === 'late' ? [a + 6, a + 9] : [a, a + 9];
+  }
+  // "1850-1870", "1850-70", "300-200 BC"
+  if ((m = s.match(/^(\d{1,4})\s*-\s*(\d{1,4})$/))) {
+    let bStr = m[2];
+    if (!bc && bStr.length < m[1].length) bStr = m[1].slice(0, m[1].length - bStr.length) + bStr;
+    let a = sign(+m[1]);
+    let b = sign(+bStr);
+    if (a > b) [a, b] = [b, a];
+    return [a, b];
+  }
+  // plain year; "circa" widens it
+  if ((m = s.match(/^(\d{1,4})$/))) {
+    const y = sign(+m[1]);
+    const w = circa ? (Math.abs(y) < 1000 || bc ? 50 : 10) : 0;
+    return [y - w, y + w];
+  }
+  return null;
+}
