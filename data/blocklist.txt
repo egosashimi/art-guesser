@@ -1,0 +1,2 @@
+# Object ids to exclude from the pool, one per line, e.g. from playtest ⚑ flags:
+#   aic:12345   # image is a fragment, impossible to place
