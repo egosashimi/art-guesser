@@ -1,153 +1,184 @@
 # Pool report
 
-Built 2026-10-21T04:54:51.675Z — **3599 objects**
+Built 2026-10-21T05:19:58.495Z — **5099 objects**
 
 ### By source
 
 | | count | share |
 |---|---:|---:|
-| aic | 1834 | 51.0% |
-| cma | 1630 | 45.3% |
-| met | 135 | 3.8% |
+| aic | 1832 | 35.9% |
+| cma | 1630 | 32.0% |
+| vam | 785 | 15.4% |
+| tepapa | 321 | 6.3% |
+| rijks | 293 | 5.7% |
+| met | 238 | 4.7% |
 
 ### By balance group
 
 | | count | share |
 |---|---:|---:|
-| Europe | 1397 | 38.8% |
-| Africa | 512 | 14.2% |
-| Iran, Central & South Asia | 480 | 13.3% |
-| North America | 366 | 10.2% |
-| East Asia | 323 | 9.0% |
-| Latin America & Caribbean | 236 | 6.6% |
-| Near East & Mediterranean Asia | 168 | 4.7% |
-| Southeast Asia | 91 | 2.5% |
-| Oceania | 26 | 0.7% |
+| Europe | 1784 | 35.0% |
+| Iran, Central & South Asia | 730 | 14.3% |
+| Africa | 600 | 11.8% |
+| East Asia | 443 | 8.7% |
+| North America | 372 | 7.3% |
+| Oceania | 349 | 6.8% |
+| Latin America & Caribbean | 321 | 6.3% |
+| Near East & Mediterranean Asia | 286 | 5.6% |
+| Southeast Asia | 214 | 4.2% |
 
 ### By region
 
 | | count | share |
 |---|---:|---:|
-| Western & Central Europe | 625 | 17.4% |
-| Mediterranean Europe | 530 | 14.7% |
-| North America & the Arctic | 366 | 10.2% |
-| East Asia | 323 | 9.0% |
-| South Asia | 258 | 7.2% |
-| Iran, Central Asia & the Steppe | 222 | 6.2% |
-| Britain, Ireland & Scandinavia | 214 | 5.9% |
-| North Africa & the Nile | 204 | 5.7% |
-| Central Africa | 173 | 4.8% |
-| Near East, Anatolia & Arabia | 168 | 4.7% |
-| Mexico & Central America | 143 | 4.0% |
-| Andes & Pacific South America | 92 | 2.6% |
-| Southeast Asia | 91 | 2.5% |
-| West Africa | 89 | 2.5% |
-| Eastern Europe | 28 | 0.8% |
-| East Africa & the Horn | 27 | 0.8% |
-| Southern Africa | 19 | 0.5% |
-| Polynesia, Micronesia & Aotearoa | 16 | 0.4% |
-| New Guinea & Melanesia | 10 | 0.3% |
-| Caribbean | 1 | 0.0% |
+| Western & Central Europe | 856 | 16.8% |
+| Mediterranean Europe | 620 | 12.2% |
+| East Asia | 443 | 8.7% |
+| South Asia | 430 | 8.4% |
+| North America & the Arctic | 372 | 7.3% |
+| Iran, Central Asia & the Steppe | 300 | 5.9% |
+| Near East, Anatolia & Arabia | 286 | 5.6% |
+| Polynesia, Micronesia & Aotearoa | 260 | 5.1% |
+| North Africa & the Nile | 242 | 4.7% |
+| Britain, Ireland & Scandinavia | 227 | 4.5% |
+| Southeast Asia | 214 | 4.2% |
+| Mexico & Central America | 180 | 3.5% |
+| Central Africa | 174 | 3.4% |
+| Andes & Pacific South America | 139 | 2.7% |
+| West Africa | 108 | 2.1% |
+| New Guinea & Melanesia | 88 | 1.7% |
+| Eastern Europe | 81 | 1.6% |
+| East Africa & the Horn | 57 | 1.1% |
+| Southern Africa | 19 | 0.4% |
+| Caribbean | 2 | 0.0% |
+| Australia | 1 | 0.0% |
 
 ### By category
 
 | | count | share |
 |---|---:|---:|
-| painting | 806 | 22.4% |
-| sculpture | 771 | 21.4% |
-| ceramic | 641 | 17.8% |
-| metal | 523 | 14.5% |
-| textile | 384 | 10.7% |
-| paper | 382 | 10.6% |
-| other | 92 | 2.6% |
+| sculpture | 1093 | 21.4% |
+| painting | 930 | 18.2% |
+| ceramic | 889 | 17.4% |
+| metal | 829 | 16.3% |
+| textile | 696 | 13.6% |
+| paper | 463 | 9.1% |
+| other | 199 | 3.9% |
 
 ### By era
 
 | | count | share |
 |---|---:|---:|
-| a. before 1000 BCE | 103 | 2.9% |
-| b. 1000–1 BCE | 353 | 9.8% |
-| c. 1–500 CE | 188 | 5.2% |
-| d. 500–1000 | 189 | 5.3% |
-| e. 1000–1500 | 599 | 16.6% |
-| f. 1500–1800 | 1018 | 28.3% |
-| g. 1800–1950 | 1149 | 31.9% |
+| a. before 1000 BCE | 112 | 2.2% |
+| b. 1000–1 BCE | 375 | 7.4% |
+| c. 1–500 CE | 227 | 4.5% |
+| d. 500–1000 | 234 | 4.6% |
+| e. 1000–1500 | 704 | 13.8% |
+| f. 1500–1800 | 1454 | 28.5% |
+| g. 1800–1950 | 1993 | 39.1% |
 
 ### Precision (radius km)
 
 | | count | share |
 |---|---:|---:|
-| ≤500 (region/country) | 1335 | 37.1% |
-| ≤60 (city/site) | 1016 | 28.2% |
-| ≤200 (district/people) | 818 | 22.7% |
-| >500 (large country/area) | 430 | 11.9% |
+| ≤500 (region/country) | 2035 | 39.9% |
+| ≤60 (city/site) | 1290 | 25.3% |
+| ≤200 (district/people) | 1268 | 24.9% |
+| >500 (large country/area) | 506 | 9.9% |
 
 ### Top buckets
 
 | | count | share |
 |---|---:|---:|
-| italy | 80 | 2.2% |
-| france | 80 | 2.2% |
-| england | 80 | 2.2% |
-| china | 80 | 2.2% |
-| united states | 80 | 2.2% |
-| japan | 80 | 2.2% |
-| egypt | 80 | 2.2% |
-| germany | 76 | 2.1% |
-| iran | 74 | 2.1% |
-| india | 71 | 2.0% |
-| netherlands | 69 | 1.9% |
-| spain | 64 | 1.8% |
-| korea | 64 | 1.8% |
-| greece | 52 | 1.4% |
-| africa, central africa, democratic republic of congo | 49 | 1.4% |
-| flanders | 37 | 1.0% |
-| egypt, new kingdom | 35 | 1.0% |
-| france, paris | 34 | 0.9% |
-| holland | 31 | 0.9% |
-| africa, central africa, democratic republic of the congo | 29 | 0.8% |
-| peru | 28 | 0.8% |
-| byzantium, constantinople | 28 | 0.8% |
-| iran, shiraz | 27 | 0.8% |
-| france, rouen | 26 | 0.7% |
-| paris | 24 | 0.7% |
-| thessalia | 24 | 0.7% |
-| philadelphia | 23 | 0.6% |
-| nepal | 23 | 0.6% |
-| eastern india, bihar, vikramashila monastery. painting: nepal, kathmandu | 23 | 0.6% |
-| meissen | 22 | 0.6% |
-| athens | 22 | 0.6% |
-| staffordshire, england | 22 | 0.6% |
-| new york | 21 | 0.6% |
-| london | 21 | 0.6% |
-| western india, gujarat | 20 | 0.6% |
-| syria | 19 | 0.5% |
-| united states, ohio, cleveland | 19 | 0.5% |
-| america | 18 | 0.5% |
-| philippines | 18 | 0.5% |
-| africa, west africa, nigeria | 17 | 0.5% |
+| netherlands | 80 | 1.6% |
+| italy | 80 | 1.6% |
+| france | 80 | 1.6% |
+| england | 80 | 1.6% |
+| india | 80 | 1.6% |
+| china | 80 | 1.6% |
+| iran | 80 | 1.6% |
+| united states | 80 | 1.6% |
+| japan | 80 | 1.6% |
+| germany | 80 | 1.6% |
+| spain | 80 | 1.6% |
+| greece | 80 | 1.6% |
+| egypt | 80 | 1.6% |
+| nepal | 80 | 1.6% |
+| korea | 80 | 1.6% |
+| turkey | 80 | 1.6% |
+| tibet | 75 | 1.5% |
+| peru | 71 | 1.4% |
+| russia | 53 | 1.0% |
+| thailand | 52 | 1.0% |
+| syria | 52 | 1.0% |
+| holland | 51 | 1.0% |
+| indonesia | 51 | 1.0% |
+| delft | 50 | 1.0% |
+| africa, central africa, democratic republic of congo | 49 | 1.0% |
+| amsterdam | 49 | 1.0% |
+| pakistan | 48 | 0.9% |
+| marquesas islands | 42 | 0.8% |
+| morocco | 40 | 0.8% |
+| afghanistan | 38 | 0.7% |
+| samoa | 38 | 0.7% |
+| flanders | 37 | 0.7% |
+| egypt, new kingdom | 35 | 0.7% |
+| france, paris | 34 | 0.7% |
+| mexico | 32 | 0.6% |
+| paris | 32 | 0.6% |
+| africa, central africa, democratic republic of the congo | 29 | 0.6% |
+| fiji | 29 | 0.6% |
+| ethiopia | 29 | 0.6% |
+| byzantium, constantinople | 28 | 0.5% |
 
 ### Rejected
 
-- excluded object type: 84
-- could not geocode: 86
-- date too vague: 249
-- date out of range: 107
-- bucket cap: 1512
-- duplicate title in bucket: 179
+- excluded object type: 196
+- could not geocode: 598
+- date too vague: 495
+- date out of range: 360
+- duplicate title in bucket: 827
+- bucket cap: 4252
 
 ### Most common unmatched place/culture strings (add to scripts/gazetteer.ts)
 
+- `madinat al-zahra` × 62
+- `europe` × 14
+- `loosdrecht` × 13
+- `britain` × 12
+- `istanboel` × 12
 - `corona` × 10
 - `mediterranean region` × 10
-- `europe` × 10
+- `westerwald` × 10
 - `africa, unknown maker` × 8
+- `west-europa` × 5
+- `voor-indie` × 5
+- `africa` × 4
+- `raeren` × 4
+- `unknown` × 4
+- `harlingen` × 4
 - `eastern mediterranean region` × 3
-- `africa` × 3
 - `probably malacian or south sea islands` × 3
+- `siegburg` × 3
+- `voorschoten` × 3
 - `greenwich` × 2
 - `southwest` × 2
 - `early islamic, eastern mediterranean` × 2
+- `cobridge` × 2
+- `tangier` × 2
+- `tanger` × 2
+- `gibraltar` × 2
+- `dodecanese islands` × 2
+- `istanbul (city)` × 2
+- `istanbul` × 2
+- `cambodja` × 2
+- `lichte` × 2
+- `neurenberg` × 2
+- `milaan` × 2
+- `madura` × 2
+- `wallonie` × 2
+- `coromandelkust` × 2
+- `geneve` × 2
 - `gloucester` × 1
 - `ipswich` × 1
 - `middlebury` × 1
@@ -177,3 +208,21 @@ Built 2026-10-21T04:54:51.675Z — **3599 objects**
 - `south sea islands` × 1
 - `southern siberia` × 1
 - `19th century` × 1
+- `astypalaia` × 1
+- `noord-duitsland` × 1
+- `doornik (henegouwen)` × 1
+- `gedong songo` × 1
+- `kalkar` × 1
+- `nedersaksen` × 1
+- `chiengmai` × 1
+- `ayuthia` × 1
+- `leeuwarden` × 1
+- `ouderkerk aan de amstel` × 1
+- `furstenberg` × 1
+- `hanley` × 1
+- `lahntal` × 1
+- `lausanne` × 1
+- `noord-italie` × 1
+- `geraardsbergen` × 1
+- `nagasaki` × 1
+- `syrie` × 1
