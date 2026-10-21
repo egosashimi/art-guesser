@@ -1,38 +1,78 @@
-// One-off: check which candidate museum APIs answer from CI and what their records look like.
-const PROBES: [string, string, Record<string, string>?][] = [
-  ['rijks-search', 'https://data.rijksmuseum.nl/search/collection?imageAvailable=true&type=mask'],
-  ['smk', 'https://api.smk.dk/api/v1/art/search/?keys=*&filters=%5Bhas_image:true%5D,%5Bpublic_domain:true%5D&offset=0&rows=1'],
-  ['vam', 'https://api.vam.ac.uk/v2/objects/search?q=mask&images_exist=1&page_size=1'],
-  ['europeana', 'https://api.europeana.eu/record/v2/search.json?wskey=api2demo&query=mask&reusability=open&media=true&qf=TYPE:IMAGE&rows=1&profile=rich'],
-  ['finna', 'https://api.finna.fi/v1/search?lookfor=mask&filter%5B%5D=online_boolean:%221%22&limit=1'],
-  ['museums-victoria', 'https://collections.museumsvictoria.com.au/api/search?query=mask&hasimages=yes&perpage=1'],
-  ['auckland', 'https://api.aucklandmuseum.com/search/collectionsonline/_search?q=mask&size=1'],
-  ['tepapa', 'https://data.tepapa.govt.nz/collection/search?q=mask'],
-  ['dimu', 'https://api.dimu.org/api/solr/select?q=maske&wt=json&rows=1&api.key=demo'],
-  ['natmus-dk', 'https://api.natmus.dk/search/public/simple?query=maske&size=1'],
-  ['nationalmuseum-se', 'https://api.nationalmuseum.se/api/objects?limit=1'],
-  ['louvre', 'https://collections.louvre.fr/ark:/53355/cl010062370.json'],
-  ['smithsonian-s3', 'https://smithsonian-open-access.s3-us-west-2.amazonaws.com/metadata/edan/nmafa/index.txt'],
-  ['paris-musees', 'https://apicollections.parismusees.paris.fr/graphql'],
-  ['colbase', 'https://colbase.nich.go.jp/api/v1/collection_items?limit=1'],
-  ['npm-tw', 'https://theme.npm.edu.tw/opendata/DigiArchiveAPI.aspx?format=json&limit=1'],
-];
-
-for (const [name, url, headers] of PROBES) {
+// One-off: inspect record structure of candidate sources from CI.
+const get = async (url: string, headers: Record<string, string> = {}) => {
+  const res = await fetch(url, { headers: { Accept: 'application/json', 'User-Agent': 'art-guesser-probe', ...headers } });
+  const text = await res.text();
   try {
-    const res = await fetch(url, { headers: { Accept: 'application/json', 'User-Agent': 'art-guesser-probe', ...headers } });
-    const body = await res.text();
-    console.log(`\n=== ${name} ${res.status} ${res.headers.get('content-type')}`);
-    console.log(body.slice(0, 1500).replace(/\s+/g, ' '));
-    if (name === 'rijks-search' && res.ok) {
-      const id = JSON.parse(body).orderedItems?.[0]?.id;
-      if (id) {
-        const r2 = await fetch(id, { headers: { Accept: 'application/ld+json' } });
-        console.log(`\n=== rijks-object ${r2.status} ${id}`);
-        console.log((await r2.text()).slice(0, 4000).replace(/\s+/g, ' '));
-      }
-    }
-  } catch (e) {
-    console.log(`\n=== ${name} ERROR ${(e as Error).message}`);
+    return { status: res.status, json: JSON.parse(text) as any, text };
+  } catch {
+    return { status: res.status, json: null as any, text };
+  }
+};
+const show = (label: string, v: unknown, n = 2500) => console.log(`\n=== ${label}\n${JSON.stringify(v).slice(0, n)}`);
+
+// V&A: search with date filter, then one full object
+{
+  const s = await get('https://api.vam.ac.uk/v2/objects/search?q_object_type=bowl&images_exist=1&year_made_from=1500&year_made_to=1700&page_size=3&page=2');
+  show(`vam search ${s.status}`, { info: s.json?.info, records: s.json?.records?.map((r: any) => ({ ...r, _images: undefined, _currentLocation: undefined })) });
+  const deep = await get('https://api.vam.ac.uk/v2/objects/search?q=*&images_exist=1&page_size=100&page=150');
+  show(`vam deep page ${deep.status}`, deep.json?.info ?? deep.text.slice(0, 300), 600);
+  const id = s.json?.records?.[0]?.systemNumber;
+  if (id) {
+    const o = await get(`https://api.vam.ac.uk/v2/object/${id}`);
+    const r = o.json?.record ?? {};
+    show(`vam object ${o.status} keys`, Object.keys(r));
+    show('vam object fields', {
+      objectType: r.objectType, titles: r.titles, productionDates: r.productionDates, placesOfOrigin: r.placesOfOrigin,
+      artistMakerPerson: r.artistMakerPerson, materialsAndTechniques: r.materialsAndTechniques, categories: r.categories,
+      creditLine: r.creditLine, images: r.images, meta: o.json?.meta,
+    }, 4000);
+  }
+}
+
+// Rijksmuseum: search pagination + object structure + place
+{
+  const s = await get('https://data.rijksmuseum.nl/search/collection?imageAvailable=true&type=vaas');
+  show(`rijks search ${s.status}`, { total: s.json?.partOf?.totalItems, next: s.json?.next, n: s.json?.orderedItems?.length });
+  const id = s.json?.orderedItems?.[3]?.id;
+  if (id) {
+    const o = await get(id, { Accept: 'application/ld+json' });
+    const j = o.json ?? {};
+    show('rijks keys', Object.keys(j));
+    show('rijks identified_by', j.identified_by, 2500);
+    show('rijks produced_by', j.produced_by, 4000);
+    show('rijks classified_as', j.classified_as, 1500);
+    show('rijks shows', j.shows, 800);
+    show('rijks made_of', j.made_of, 800);
+    show('rijks subject_of', j.subject_of?.slice?.(0, 2), 800);
+    const placeId = j.produced_by?.took_place_at?.[0]?.id ?? j.produced_by?.part?.[0]?.took_place_at?.[0]?.id;
+    if (placeId) show('rijks place', (await get(placeId, { Accept: 'application/ld+json' })).json, 2500);
+    const visId = j.shows?.[0]?.id;
+    if (visId) show('rijks visual', (await get(visId, { Accept: 'application/ld+json' })).json, 2500);
+  }
+}
+
+// SMK: one public-domain non-print object with all fields
+{
+  const s = await get('https://api.smk.dk/api/v1/art/search/?keys=*&filters=%5Bhas_image:true%5D,%5Bpublic_domain:true%5D,%5Bobject_names:maleri%5D&offset=10&rows=1&lang=en');
+  show(`smk ${s.status}`, s.json?.items?.[0], 5000);
+}
+
+// Europeana: which open-licence providers have coordinates + years
+{
+  const f = await get('https://api.europeana.eu/record/v2/search.json?wskey=api2demo&query=pl_wgs84_pos_lat:*&qf=TYPE:IMAGE&reusability=open&rows=0&profile=facets&facet=DATA_PROVIDER&f.DATA_PROVIDER.facet.limit=40');
+  show(`europeana providers with coordinates ${f.status}`, f.json?.facets, 4000);
+  const g = await get('https://api.europeana.eu/record/v2/search.json?wskey=api2demo&query=*&qf=TYPE:IMAGE&reusability=open&rows=0&profile=facets&facet=DATA_PROVIDER&f.DATA_PROVIDER.facet.limit=60&qf=DATA_PROVIDER:*museum*');
+  show(`europeana museum providers ${g.status}`, g.json?.facets ?? g.text.slice(0, 500), 4000);
+  const one = await get('https://api.europeana.eu/record/v2/search.json?wskey=api2demo&query=pl_wgs84_pos_lat:*&qf=TYPE:IMAGE&reusability=open&rows=2&profile=rich&qf=DATA_PROVIDER:%22Museum%20of%20Ethnography%22');
+  show(`europeana sample ${one.status}`, one.json?.items, 5000);
+}
+
+// Te Papa guest token
+{
+  const t = await get('https://data.tepapa.govt.nz/collection/search?q=tiki');
+  const token = t.json?.guestToken;
+  if (token) {
+    const r = await get('https://data.tepapa.govt.nz/collection/search?q=tapa&size=1', { Authorization: `Bearer ${token}`, 'x-api-key': token });
+    show(`tepapa ${r.status}`, r.json ?? r.text.slice(0, 500), 4000);
   }
 }
