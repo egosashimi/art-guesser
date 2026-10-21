@@ -1,154 +1,155 @@
 # Pool report
 
-Built 2026-10-21T04:30:19.145Z — **3092 objects**
+Built 2026-10-21T04:37:14.183Z — **3532 objects**
 
 ### By source
 
 | | count | share |
 |---|---:|---:|
-| aic | 1778 | 57.5% |
-| cma | 1314 | 42.5% |
+| aic | 1770 | 50.1% |
+| cma | 1628 | 46.1% |
+| met | 134 | 3.8% |
 
 ### By balance group
 
 | | count | share |
 |---|---:|---:|
-| Europe | 1240 | 40.1% |
-| Africa | 365 | 11.8% |
-| East Asia | 340 | 11.0% |
-| Iran, Central & South Asia | 328 | 10.6% |
-| North America | 322 | 10.4% |
-| Latin America & Caribbean | 244 | 7.9% |
-| Near East & Mediterranean Asia | 152 | 4.9% |
-| Southeast Asia | 82 | 2.7% |
-| Oceania | 19 | 0.6% |
+| Europe | 1360 | 38.5% |
+| Africa | 510 | 14.4% |
+| Iran, Central & South Asia | 480 | 13.6% |
+| North America | 340 | 9.6% |
+| East Asia | 323 | 9.1% |
+| Latin America & Caribbean | 235 | 6.7% |
+| Near East & Mediterranean Asia | 167 | 4.7% |
+| Southeast Asia | 91 | 2.6% |
+| Oceania | 26 | 0.7% |
 
 ### By region
 
 | | count | share |
 |---|---:|---:|
-| Western & Central Europe | 582 | 18.8% |
-| Mediterranean Europe | 446 | 14.4% |
-| East Asia | 340 | 11.0% |
-| North America & the Arctic | 322 | 10.4% |
-| South Asia | 226 | 7.3% |
-| Britain, Ireland & Scandinavia | 191 | 6.2% |
-| North Africa & the Nile | 178 | 5.8% |
-| Near East, Anatolia & Arabia | 152 | 4.9% |
-| Mexico & Central America | 143 | 4.6% |
-| Central Africa | 109 | 3.5% |
-| Iran, Central Asia & the Steppe | 102 | 3.3% |
-| Andes & Pacific South America | 99 | 3.2% |
-| Southeast Asia | 82 | 2.7% |
-| West Africa | 55 | 1.8% |
-| Eastern Europe | 21 | 0.7% |
-| East Africa & the Horn | 14 | 0.5% |
-| Polynesia, Micronesia & Aotearoa | 10 | 0.3% |
-| Southern Africa | 9 | 0.3% |
-| New Guinea & Melanesia | 9 | 0.3% |
+| Western & Central Europe | 619 | 17.5% |
+| Mediterranean Europe | 499 | 14.1% |
+| North America & the Arctic | 340 | 9.6% |
+| East Asia | 323 | 9.1% |
+| South Asia | 258 | 7.3% |
+| Iran, Central Asia & the Steppe | 222 | 6.3% |
+| Britain, Ireland & Scandinavia | 214 | 6.1% |
+| North Africa & the Nile | 202 | 5.7% |
+| Central Africa | 173 | 4.9% |
+| Near East, Anatolia & Arabia | 167 | 4.7% |
+| Mexico & Central America | 142 | 4.0% |
+| Andes & Pacific South America | 92 | 2.6% |
+| Southeast Asia | 91 | 2.6% |
+| West Africa | 89 | 2.5% |
+| Eastern Europe | 28 | 0.8% |
+| East Africa & the Horn | 27 | 0.8% |
+| Southern Africa | 19 | 0.5% |
+| Polynesia, Micronesia & Aotearoa | 16 | 0.5% |
+| New Guinea & Melanesia | 10 | 0.3% |
 | Caribbean | 1 | 0.0% |
-| Amazonia & Atlantic South America | 1 | 0.0% |
 
 ### By category
 
 | | count | share |
 |---|---:|---:|
-| painting | 760 | 24.6% |
-| ceramic | 632 | 20.4% |
-| sculpture | 628 | 20.3% |
-| metal | 375 | 12.1% |
-| textile | 342 | 11.1% |
-| paper | 273 | 8.8% |
-| other | 82 | 2.7% |
+| painting | 789 | 22.3% |
+| sculpture | 766 | 21.7% |
+| ceramic | 627 | 17.8% |
+| metal | 505 | 14.3% |
+| paper | 382 | 10.8% |
+| textile | 371 | 10.5% |
+| other | 92 | 2.6% |
 
 ### By era
 
 | | count | share |
 |---|---:|---:|
-| a. before 1000 BCE | 90 | 2.9% |
-| b. 1000–1 BCE | 303 | 9.8% |
-| c. 1–500 CE | 176 | 5.7% |
-| d. 500–1000 | 154 | 5.0% |
-| e. 1000–1500 | 488 | 15.8% |
-| f. 1500–1800 | 909 | 29.4% |
-| g. 1800–1950 | 972 | 31.4% |
+| a. before 1000 BCE | 103 | 2.9% |
+| b. 1000–1 BCE | 325 | 9.2% |
+| c. 1–500 CE | 185 | 5.2% |
+| d. 500–1000 | 188 | 5.3% |
+| e. 1000–1500 | 594 | 16.8% |
+| f. 1500–1800 | 1012 | 28.7% |
+| g. 1800–1950 | 1125 | 31.9% |
 
 ### Precision (radius km)
 
 | | count | share |
 |---|---:|---:|
-| ≤500 (region/country) | 1231 | 39.8% |
-| ≤60 (city/site) | 763 | 24.7% |
-| ≤200 (district/people) | 717 | 23.2% |
-| >500 (large country/area) | 381 | 12.3% |
+| ≤500 (region/country) | 1329 | 37.6% |
+| ≤60 (city/site) | 980 | 27.7% |
+| ≤200 (district/people) | 792 | 22.4% |
+| >500 (large country/area) | 431 | 12.2% |
 
 ### Top buckets
 
 | | count | share |
 |---|---:|---:|
-| italy | 80 | 2.6% |
-| france | 80 | 2.6% |
-| england | 80 | 2.6% |
-| china | 80 | 2.6% |
-| united states | 80 | 2.6% |
-| japan | 80 | 2.6% |
-| egypt | 80 | 2.6% |
-| india | 71 | 2.3% |
-| spain | 71 | 2.3% |
-| netherlands | 66 | 2.1% |
-| germany | 65 | 2.1% |
-| korea | 63 | 2.0% |
-| greece | 56 | 1.8% |
-| byzantium, constantinople | 54 | 1.7% |
-| flanders | 41 | 1.3% |
-| iran | 37 | 1.2% |
-| flanders, ghent and bruges | 32 | 1.0% |
-| holland | 31 | 1.0% |
-| africa, central africa, democratic republic of congo | 28 | 0.9% |
-| france, paris | 27 | 0.9% |
-| peru | 26 | 0.8% |
+| italy | 80 | 2.3% |
+| france | 80 | 2.3% |
+| england | 80 | 2.3% |
+| china | 80 | 2.3% |
+| united states | 80 | 2.3% |
+| japan | 80 | 2.3% |
+| egypt | 80 | 2.3% |
+| germany | 76 | 2.2% |
+| iran | 74 | 2.1% |
+| india | 71 | 2.0% |
+| netherlands | 69 | 2.0% |
+| spain | 64 | 1.8% |
+| korea | 64 | 1.8% |
+| greece | 52 | 1.5% |
+| africa, central africa, democratic republic of congo | 49 | 1.4% |
+| flanders | 37 | 1.0% |
+| egypt, new kingdom | 35 | 1.0% |
+| france, paris | 34 | 1.0% |
+| holland | 31 | 0.9% |
+| africa, central africa, democratic republic of the congo | 29 | 0.8% |
+| peru | 28 | 0.8% |
+| byzantium, constantinople | 28 | 0.8% |
+| iran, shiraz | 27 | 0.8% |
+| france, rouen | 26 | 0.7% |
+| paris | 24 | 0.7% |
 | philadelphia | 23 | 0.7% |
-| africa, central africa, democratic republic of the congo | 23 | 0.7% |
-| meissen | 22 | 0.7% |
-| athens | 22 | 0.7% |
-| staffordshire, england | 22 | 0.7% |
-| egypt, new kingdom | 22 | 0.7% |
-| new york | 20 | 0.6% |
-| nepal | 20 | 0.6% |
-| philippines | 17 | 0.5% |
-| roman empire | 16 | 0.5% |
-| artist unknown (american, 19th century) | 16 | 0.5% |
-| mexico | 16 | 0.5% |
-| sevres | 16 | 0.5% |
-| egypt, third intermediate | 16 | 0.5% |
-| china, jiangxi province, jingdezhen kilns | 16 | 0.5% |
-| new york city | 15 | 0.5% |
-| london | 15 | 0.5% |
-| paris | 15 | 0.5% |
-| syria | 15 | 0.5% |
+| nepal | 23 | 0.7% |
+| eastern india, bihar, vikramashila monastery. painting: nepal, kathmandu | 23 | 0.7% |
+| meissen | 22 | 0.6% |
+| athens | 22 | 0.6% |
+| staffordshire, england | 22 | 0.6% |
+| new york | 21 | 0.6% |
+| london | 21 | 0.6% |
+| western india, gujarat | 20 | 0.6% |
+| syria | 19 | 0.5% |
+| united states, ohio, cleveland | 19 | 0.5% |
+| america | 18 | 0.5% |
+| philippines | 18 | 0.5% |
+| africa, west africa, nigeria | 17 | 0.5% |
+| afghanistan, herat | 17 | 0.5% |
 
 ### Rejected
 
-- could not geocode: 142
-- excluded object type: 69
-- date too vague: 214
-- date out of range: 65
-- duplicate title in bucket: 192
-- bucket cap: 1413
+- excluded object type: 84
+- could not geocode: 157
+- date too vague: 249
+- date out of range: 107
+- bucket cap: 1512
+- duplicate title in bucket: 175
 
 ### Most common unmatched place/culture strings (add to scripts/gazetteer.ts)
 
 - `thessalia` × 27
-- `mediterranean region` × 11
 - `corona` × 10
-- `europe` × 7
+- `mediterranean region` × 10
+- `europe` × 10
+- `africa, unknown maker` × 8
 - `arizona` × 5
 - `cales` × 4
 - `roxbury` × 3
 - `providence` × 3
 - `eastern mediterranean region` × 3
 - `clichy` × 3
-- `africa, unknown maker` × 3
+- `africa` × 3
 - `probably malacian or south sea islands` × 3
 - `florida` × 2
 - `greenwich` × 2
@@ -158,6 +159,8 @@ Built 2026-10-21T04:30:19.145Z — **3092 objects**
 - `lancaster` × 2
 - `wilmington` × 2
 - `early islamic, eastern mediterranean` × 2
+- `balkans, 19th century` × 2
+- `transcaucasia` × 1
 - `niagara falls` × 1
 - `prouts neck` × 1
 - `frascati` × 1
@@ -183,7 +186,6 @@ Built 2026-10-21T04:30:19.145Z — **3092 objects**
 - `tyre` × 1
 - `polis` × 1
 - `rodhos` × 1
-- `dahestan` × 1
 - `ancient mediterranean` × 1
 - `nottingham` × 1
 - `rhine` × 1
@@ -196,7 +198,8 @@ Built 2026-10-21T04:30:19.145Z — **3092 objects**
 - `mount holly` × 1
 - `coventry` × 1
 - `european` × 1
-- `africa` × 1
+- `africa, early 20th century` × 1
 - `africa, probably southern africa` × 1
 - `south sea islands` × 1
-- `classical` × 1
+- `southern siberia` × 1
+- `19th century` × 1
