@@ -62,4 +62,4 @@ export function formatRange(y0: number, y1: number): string {
   return `${formatYear(y0)} – ${formatYear(y1)}`;
 }
 
-export const TICKS = [-4000, -2000, -1000, 0, 500, 1000, 1400, 1600, 1800, 1950];
+export const TICKS = [-4000, -1000, 0, 500, 1000, 1400, 1600, 1800, 1950];

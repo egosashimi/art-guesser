@@ -1,9 +1,9 @@
-import { useEffect, useMemo, useRef, useState } from 'preact/hooks';
+import { useEffect, useLayoutEffect, useMemo, useRef, useState } from 'preact/hooks';
 import { geoCircle, geoGraticule10, geoNaturalEarth1, geoPath, type GeoPermissibleObjects } from 'd3-geo';
 import { select } from 'd3-selection';
 import { zoom as d3zoom, zoomIdentity, type ZoomBehavior, type ZoomTransform } from 'd3-zoom';
 import type { World } from '../geo/world.ts';
-import { regionFor } from '../geo/regions.ts';
+import { REGION_BY_ID, regionFor } from '../geo/regions.ts';
 import type { GameObject, GeoTier, PlaceGuess } from '../game/types.ts';
 import { answerId } from '../game/scoring.ts';
 
@@ -19,10 +19,16 @@ export interface MapViewProps {
   /** Unit to outline as a hint (one tier above the current one). */
   hintArea?: { tier: 'continent' | 'region'; id: string } | null;
   showLabels: boolean;
+  /** Changes every round; resets the zoom. */
+  roundKey: string;
 }
 
-export function MapView({ world, tier, guess, onGuess, answer, hintArea, showLabels }: MapViewProps) {
+export function MapView({ world, tier, guess, onGuess, answer, hintArea, showLabels, roundKey }: MapViewProps) {
   const svgRef = useRef<SVGSVGElement>(null);
+  const boxRef = useRef<HTMLDivElement>(null);
+  // On tall/narrow screens the map fills a taller box (cropping the sides) and can be panned
+  // sideways; vw is the width of the viewBox that is actually visible.
+  const [vw, setVw] = useState(W);
   const zoomRef = useRef<ZoomBehavior<SVGSVGElement, unknown> | null>(null);
   const [t, setT] = useState<ZoomTransform>(zoomIdentity);
   const [hover, setHover] = useState<string | null>(null);
@@ -36,8 +42,11 @@ export function MapView({ world, tier, guess, onGuess, answer, hintArea, showLab
       sphere: path({ type: 'Sphere' }) ?? '',
       graticule: path(geoGraticule10()) ?? '',
       countries: world.countries.map((c) => ({ name: c.name, d: path(c.feature) ?? '' })),
-      regions: world.regions.map((r) => ({ id: r.id, name: r.name, d: path(r.feature) ?? '', c: projection(r.center) })),
-      continents: world.continents.map((r) => ({ id: r.id, name: r.name, d: path(r.feature) ?? '', c: projection(r.center) })),
+      regions: world.regions.map((r) => {
+        const def = REGION_BY_ID.get(r.id)!;
+        return { id: r.id, name: r.name, short: def.short, d: path(r.feature) ?? '', c: projection(def.label ?? r.center) };
+      }),
+      continents: world.continents.map((r) => ({ id: r.id, name: r.name, short: r.name, d: path(r.feature) ?? '', c: projection(r.center) })),
     }),
     [world, path, projection],
   );
@@ -52,15 +61,27 @@ export function MapView({ world, tier, guess, onGuess, answer, hintArea, showLab
       .on('zoom', (e) => setT(e.transform));
     zoomRef.current = z;
     select(svg).call(z).on('dblclick.zoom', null);
+    const ro = new ResizeObserver(() => {
+      const r = boxRef.current?.getBoundingClientRect();
+      if (r && r.height > 0) setVw(Math.min(W, (H * r.width) / r.height));
+    });
+    if (boxRef.current) ro.observe(boxRef.current);
     return () => {
+      ro.disconnect();
       select(svg).on('.zoom', null);
     };
   }, []);
 
-  // Reset the view between rounds
   useEffect(() => {
-    if (!answer && !guess) zoomTo(zoomIdentity, false);
-  }, [answer, guess, tier]);
+    const x0 = (W - vw) / 2;
+    zoomRef.current?.extent([[x0, 0], [x0 + vw, H]]);
+  }, [vw]);
+
+  // Reset the view between rounds
+  useLayoutEffect(() => {
+    zoomTo(zoomIdentity, false);
+    setHover(null);
+  }, [roundKey]);
 
   // On reveal, frame the guess and the answer together
   useEffect(() => {
@@ -73,10 +94,12 @@ export function MapView({ world, tier, guess, onGuess, answer, hintArea, showLab
     const pad = 80;
     const bw = Math.max(...xs) - Math.min(...xs) + pad * 2;
     const bh = Math.max(...ys) - Math.min(...ys) + pad * 2;
-    const k = Math.max(1, Math.min(6, Math.min(W / bw, H / bh)));
+    const k = Math.max(1, Math.min(6, Math.min(vw / bw, H / bh)));
     const cx = (Math.max(...xs) + Math.min(...xs)) / 2;
     const cy = (Math.max(...ys) + Math.min(...ys)) / 2;
-    zoomTo(zoomIdentity.translate(W / 2 - k * cx, H / 2 - k * cy).scale(k), true);
+    const tx = Math.min(0, Math.max(W - W * k, W / 2 - k * cx));
+    const ty = Math.min(0, Math.max(H - H * k, H / 2 - k * cy));
+    zoomTo(zoomIdentity.translate(tx, ty).scale(k), true);
   }, [answer]);
 
   function zoomTo(tr: ZoomTransform, animate: boolean) {
@@ -168,10 +191,11 @@ export function MapView({ world, tier, guess, onGuess, answer, hintArea, showLab
     ].join(' ');
 
   return (
-    <div class={`map ${onGuess ? 'is-active' : ''} tier-${tier}`}>
+    <div ref={boxRef} class={`map ${onGuess ? 'is-active' : ''} tier-${tier}`}>
       <svg
         ref={svgRef}
         viewBox={`0 0 ${W} ${H}`}
+        preserveAspectRatio="xMidYMid slice"
         onClick={onClick}
         onMouseMove={onMove}
         onMouseLeave={() => setHover(null)}
@@ -189,12 +213,12 @@ export function MapView({ world, tier, guess, onGuess, answer, hintArea, showLab
             ),
           )}
           {units?.map((u) => <path key={u.id} d={u.d} data-unit={u.id} class={unitClass(u.id)} />)}
-          {hintD && <path class="hint-area" d={hintD} />}
+          {hintD && !answer && <path class="hint-area" d={hintD} />}
           {showLabels && units && !answer &&
             units.map((u) =>
               u.c ? (
-                <text key={u.id} class="unit-label" x={u.c[0]} y={u.c[1]} style={{ fontSize: `${11 / Math.sqrt(k)}px` }}>
-                  {u.name}
+                <text key={u.id} class="unit-label" x={u.c[0]} y={u.c[1]} style={{ fontSize: `${(tier === 'continent' ? 13 : 9.5) / Math.sqrt(k)}px` }}>
+                  {u.short}
                 </text>
               ) : null,
             )}
@@ -220,7 +244,7 @@ export function MapView({ world, tier, guess, onGuess, answer, hintArea, showLab
         <button type="button" onClick={() => zoomTo(zoomIdentity, true)} aria-label="Reset view">⟲</button>
       </div>
       <div class="map-status" aria-live="polite">
-        {answer ? null : hoverName ? <span>{hoverName}</span> : guessName ? <span>Selected: <b>{guessName}</b></span> : tier === 'pinpoint' && guess ? <span>Pin placed. Scroll or pinch to zoom; click again to move it.</span> : null}
+        {answer ? null : hoverName ? <span>{hoverName}</span> : guessName ? <span>Selected: <b>{guessName}</b></span> : tier === 'pinpoint' && guess ? <span>Pin placed · zoom in to refine</span> : null}
       </div>
     </div>
   );

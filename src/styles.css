@@ -193,7 +193,7 @@ label.check { flex-direction: row !important; align-items: center; gap: 0.5rem !
   overflow: hidden;
   cursor: zoom-in;
 }
-@media (max-width: 899px) { .artwork-frame { height: 42vh; } }
+@media (max-width: 899px) { .artwork-frame { height: 36vh; } }
 .artwork-frame img { max-width: 100%; max-height: 100%; object-fit: contain; transition: transform 0.4s ease; }
 .artwork-frame.loading img { opacity: 0; }
 .artwork-frame .spinner { position: absolute; }
@@ -212,7 +212,9 @@ label.check { flex-direction: row !important; align-items: center; gap: 0.5rem !
 
 /* ── Map ──────────────────────────────────────────── */
 .map { position: relative; background: var(--ocean); border-radius: var(--radius); overflow: hidden; border: 1px solid var(--line); touch-action: none; }
-.map svg { display: block; width: 100%; height: auto; aspect-ratio: 960 / 500; }
+.map { aspect-ratio: 960 / 500; }
+.map svg { display: block; width: 100%; height: 100%; }
+@media (max-width: 899px) { .map { aspect-ratio: auto; height: min(58vh, 120vw); } }
 .map.is-active svg { cursor: crosshair; }
 .map.is-active.tier-continent svg, .map.is-active.tier-region svg, .map.is-active.tier-country svg { cursor: pointer; }
 .zoom-layer { transform-origin: 0 0; }
@@ -224,10 +226,10 @@ label.check { flex-direction: row !important; align-items: center; gap: 0.5rem !
 .country.unit { fill: var(--land); }
 .unit.hover { fill: var(--unit-hover); fill-opacity: 0.75; }
 .unit.selected { fill: var(--unit-selected); fill-opacity: 0.8; stroke: var(--ink); }
-.unit.correct { fill: var(--ok); fill-opacity: 0.55; stroke: var(--ok); }
-.unit.wrong { fill: var(--bad); fill-opacity: 0.45; stroke: var(--bad); }
+.unit.correct { fill: var(--ok); fill-opacity: 0.75; stroke: var(--ok); }
+.unit.wrong { fill: var(--bad); fill-opacity: 0.6; stroke: var(--bad); }
 .hint-area { fill: var(--hint); fill-opacity: 0.12; stroke: var(--hint); stroke-width: 2; stroke-dasharray: 5 4; vector-effect: non-scaling-stroke; pointer-events: none; }
-.unit-label { fill: var(--ink); opacity: 0.55; text-anchor: middle; dominant-baseline: middle; pointer-events: none; font-family: var(--sans); paint-order: stroke; stroke: var(--land); stroke-width: 2px; }
+.unit-label { fill: var(--ink); opacity: 0.6; font-weight: 500; text-anchor: middle; dominant-baseline: middle; pointer-events: none; font-family: var(--sans); paint-order: stroke; stroke: var(--land); stroke-width: 2px; }
 .answer-radius { fill: var(--ok); fill-opacity: 0.15; stroke: var(--ok); stroke-width: 1; vector-effect: non-scaling-stroke; pointer-events: none; }
 .guess-line { fill: none; stroke: var(--ink); stroke-width: 1.5; vector-effect: non-scaling-stroke; pointer-events: none; }
 .pin { pointer-events: none; }
@@ -256,13 +258,13 @@ label.check { flex-direction: row !important; align-items: center; gap: 0.5rem !
 .timeline-hint { position: absolute; top: 0; bottom: 0; background: var(--hint); opacity: 0.22; border-left: 2px solid var(--hint); border-right: 2px solid var(--hint); }
 .timeline-answer { position: absolute; top: 4px; bottom: 4px; background: var(--ok); opacity: 0.75; border-radius: 3px; }
 .timeline-thumb { position: absolute; top: 0; bottom: 0; width: 4px; margin-left: -2px; background: var(--accent); border-radius: 2px; box-shadow: 0 0 0 2px var(--surface); }
-.timeline-thumb::after { content: ''; position: absolute; top: -2px; left: -6px; width: 16px; height: 16px; border-radius: 50%; background: var(--accent); }
+.timeline-thumb::after { content: ''; position: absolute; top: 50%; left: -6px; width: 16px; height: 16px; margin-top: -8px; border-radius: 50%; background: var(--accent); box-shadow: 0 0 0 2px var(--surface); }
 .timeline-ticks { position: relative; height: 18px; font-size: 0.68rem; color: var(--muted); }
 .timeline-ticks span { position: absolute; transform: translateX(-50%); white-space: nowrap; }
 .timeline-ticks span:first-child { transform: none; }
 .timeline-ticks span:last-child { transform: translateX(-100%); }
 @media (max-width: 560px) {
-  .timeline-ticks span:nth-child(2), .timeline-ticks span:nth-child(7) { display: none; }
+  .timeline-ticks span:nth-child(5), .timeline-ticks span:nth-child(7) { display: none; }
   .era span { display: none; }
 }
 

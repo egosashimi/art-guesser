@@ -13,6 +13,7 @@
     "skipLibCheck": true,
     "isolatedModules": true,
     "verbatimModuleSyntax": true,
+    "erasableSyntaxOnly": true,
     "types": ["node", "vite/client"]
   },
   "include": ["src", "scripts", "tests", "vite.config.ts"]

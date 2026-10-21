@@ -737,6 +737,33 @@ const RAW = `
 40.2,44.5,150|armenia|armenian|cilician armenia|yerevan|vaspurakan
 40.4,49.9,150|azerbaijan|azerbaijani|caucasus|caucasian|dagestan|kuba (caucasus)|shirvan|karabagh|kazak (caucasus)
 
+# ───────────── Misc. places seen in museum data ─────────────
+39.5,22.2,100|thessalia
+41.2,14.13,30|cales|calenian
+29.3,30.8,60|al fayyum|el fayyum
+34.2,-111.7,300|arizona
+28,-82,400|florida
+40.8,-73.2,80|long island
+42.33,-71.09,20|roxbury|dorchester|cambridge, massachusetts
+41.82,-71.41,40|providence
+39.74,-75.55,40|wilmington|delaware valley
+40.04,-76.3,40|lancaster
+40.22,-74.76,30|trenton
+38.5,-92.5,300|missouri
+34.8,-92.2,250|arkansas
+43.08,-79.07,40|niagara falls|niagara
+41.28,-70.1,30|nantucket|nantucket island
+43.53,-70.32,40|prouts neck|kittery point|portland, maine
+48.9,2.3,15|clichy|montmartre|argenteuil|asnieres|bougival|louveciennes|marly-le-roi|pontoise|auvers-sur-oise
+49.07,1.53,20|giverny|vernon
+49.37,0.08,40|trouville|honfleur|le havre|etretat|étretat|sainte-adresse
+49.43,2.08,30|beauvais
+48.76,2.17,15|jouy-en-josas|versailles
+41.8,12.68,20|frascati
+7.6,-80.4,60|los santos province|herrera province
+43,21,450|balkans|balkan
+41,45,300|transcaucasia|south caucasus
+
 # ───────────── Broad regions (low precision) ─────────────
 10,-3,1100|west africa|western africa|west african|guinea coast
 -2,18,1000|central africa|central african|equatorial africa|congo basin

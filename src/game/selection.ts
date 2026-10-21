@@ -11,7 +11,9 @@
 //      0, 1, 2 or 3 from any group are all normal.
 //   4. Across games (endless mode, saved history), groups that have been under-served get a
 //      boost and over-served ones a penalty, so the long-run mix converges on the targets.
-//   5. Occasionally a Daily is a "spotlight" day that leans hard into one group.
+//   5. Groups with very few objects (e.g. Oceanic paintings) are scaled down so their few
+//      objects don't repeat every week.
+//   6. Occasionally a Daily is a "spotlight" day that leans hard into one group.
 //
 // Inside a group we then pick region → culture bucket → object, each step spreading picks out,
 // so a game rarely shows two objects from the same culture, era or medium.
@@ -33,6 +35,11 @@ export const GROUP_TARGETS: Record<BalanceGroup, number> = {
 
 const HARD_CAP = 4;
 const JITTER_SIGMA = 0.5;
+/**
+ * A group with few objects gets its weight scaled down so that, at ~1 game a day, its objects
+ * don't come round again sooner than this (otherwise 8 African paintings would repeat weekly).
+ */
+const MIN_REPEAT_DAYS = 60;
 
 export interface SelectionOptions {
   rng: Rng;
@@ -78,8 +85,12 @@ export class Picker {
   private catCount = new Map<string, number>();
   private used = new Set<string>();
   readonly spotlight: BalanceGroup | null = null;
+  private opts: SelectionOptions;
+  private poolCount = new Map<BalanceGroup, number>();
 
-  constructor(private objects: GameObject[], private opts: SelectionOptions) {
+  constructor(objects: GameObject[], opts: SelectionOptions) {
+    this.opts = opts;
+    for (const o of objects) this.poolCount.set(o.group, (this.poolCount.get(o.group) ?? 0) + 1);
     const pool = opts.exclude?.size ? objects.filter((o) => !opts.exclude!.has(o.id)) : objects;
     // If the player has seen (almost) everything, start over rather than run dry.
     this.idx = buildIndex(pool.length >= 20 ? pool : objects);
@@ -106,7 +117,8 @@ export class Picker {
     if (n >= cap) return 0;
     if (!this.opts.balanced) return Math.sqrt(this.countIn(g));
     const target = GROUP_TARGETS[g] ?? 0.05;
-    let w = target * (this.jitter.get(g) ?? 1);
+    const scarcity = Math.min(1, (this.poolCount.get(g) ?? 0) / (target * 10 * MIN_REPEAT_DAYS));
+    let w = target * scarcity * (this.jitter.get(g) ?? 1);
     // Soft diminishing returns within a game; Europe's larger target decays slower.
     const decay = g === this.spotlight ? 0.9 : Math.min(0.85, 0.35 + target * 2);
     w *= decay ** n;

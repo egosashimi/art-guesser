@@ -14,7 +14,7 @@ import { regionFor, BALANCE_GROUP_NAMES, type BalanceGroup } from '../src/geo/re
 import type { ArtObject, Pool, SourceId } from '../src/data/types.ts';
 import { makeGeocoder } from './geocode.ts';
 import { normalize } from './gazetteer.ts';
-import type { RawRecord } from './sources/common.ts';
+import type { FetchOptions, RawRecord } from './sources/common.ts';
 import { fetchMet } from './sources/met.ts';
 import { fetchAic } from './sources/aic.ts';
 import { fetchCma } from './sources/cma.ts';
@@ -32,7 +32,7 @@ const opt = (name: string, dflt: string) => {
   return i >= 0 ? args[i + 1] : dflt;
 };
 
-const FETCHERS: Record<SourceId, (o: { limit: number; log: (m: string) => void }) => Promise<RawRecord[]>> = {
+const FETCHERS: Record<SourceId, (o: FetchOptions) => Promise<RawRecord[]>> = {
   met: fetchMet,
   aic: fetchAic,
   cma: fetchCma,
@@ -42,6 +42,8 @@ const LIMITS: Record<SourceId, number> = { met: 4500, aic: 2500, cma: 3000 };
 // ── Filters ──────────────────────────────────────────────────────────────────
 const MIN_YEAR = -4000;
 const MAX_YEAR = 1950;
+/** `added` date for objects in the very first pool, so they're eligible for every Daily. */
+const BASELINE_ADDED = '2026-10-01';
 const MAX_RADIUS_KM = 1300;
 const MAX_PER_BUCKET = 80;
 const EXCLUDE_KIND = /\b(photograph|negative|coin|token|weight|sherds?|shards?|ostracon|bead|beads|seal impression|sample|specimen|mount|frame|button|nail|tack|rivet|stopper|lid|cover fragment)\b/i;
@@ -57,28 +59,48 @@ async function main() {
   const sources = opt('sources', 'met,aic,cma').split(',') as SourceId[];
   const scale = Number(opt('scale', '1'));
   const fromCache = flag('from-cache');
+  // --only-fetch met: fetch just these sources, use the cache for the rest
+  const onlyFetch = opt('only-fetch', '').split(',').filter(Boolean);
 
   const raw: RawRecord[] = [];
   for (const src of sources) {
     const cacheFile = `${RAW_DIR}/${src}.json.gz`;
-    let recs: RawRecord[] | null = null;
-    if (!fromCache) {
-      console.log(`\n▶ fetching ${src}`);
+    const cached: RawRecord[] = existsSync(cacheFile) ? JSON.parse(gunzipSync(readFileSync(cacheFile)).toString()) : [];
+    let recs = cached;
+    if (!fromCache && (!onlyFetch.length || onlyFetch.includes(src))) {
+      console.log(`\n▶ fetching ${src} (${cached.length} cached)`);
+      let fresh: RawRecord[] = [];
       try {
-        recs = await FETCHERS[src]({ limit: Math.round(LIMITS[src] * scale), log: (m) => console.log('  ' + m) });
+        fresh = await FETCHERS[src]({
+          limit: Math.round(LIMITS[src] * scale),
+          log: (m) => console.log('  ' + m),
+          skip: new Set(cached.map((r) => r.srcId)),
+        });
       } catch (e) {
         console.warn(`  ${src} failed: ${(e as Error).message}`);
       }
-      if (recs && recs.length > 50) writeFileSync(cacheFile, gzipSync(JSON.stringify(recs)));
-      else {
-        console.warn(`  ${src}: only ${recs?.length ?? 0} records; falling back to cache`);
-        recs = null;
-      }
+      // Merge: the cache only grows (fresh records replace stale copies), so a source that is
+      // rate-limited today still contributes everything fetched on earlier runs.
+      const merged = new Map(cached.map((r) => [r.srcId, r]));
+      for (const r of fresh) merged.set(r.srcId, r);
+      recs = [...merged.values()];
+      console.log(`  ${src}: ${fresh.length} fetched, ${recs.length} total`);
+      if (fresh.length) writeFileSync(cacheFile, gzipSync(JSON.stringify(recs)));
     }
-    if (!recs && existsSync(cacheFile)) recs = JSON.parse(gunzipSync(readFileSync(cacheFile)).toString());
-    console.log(`  ${src}: ${recs?.length ?? 0} raw records`);
-    if (recs) raw.push(...recs);
+    console.log(`  ${src}: ${recs.length} raw records`);
+    raw.push(...recs);
   }
+
+  // Keep each object's first-seen date so Daily puzzles stay stable when the pool grows.
+  const previousAdded = new Map<string, string>();
+  if (existsSync(OUT)) {
+    try {
+      for (const o of (JSON.parse(readFileSync(OUT, 'utf8')) as Pool).objects) if (o.added) previousAdded.set(o.id, o.added);
+    } catch {
+      /* first build */
+    }
+  }
+  const today = new Date().toISOString().slice(0, 10);
 
   const world = buildWorld(require('world-atlas/countries-50m.json'));
   const { geocode, lookup } = makeGeocoder(world);
@@ -87,12 +109,18 @@ async function main() {
   const reject = (why: string) => (rejected[why] = (rejected[why] ?? 0) + 1);
   const unmatched = new Map<string, number>();
 
+  const blocked = new Set(
+    existsSync(`${ROOT}data/blocklist.txt`)
+      ? readFileSync(`${ROOT}data/blocklist.txt`, 'utf8').split('\n').map((l) => l.replace(/#.*/, '').trim()).filter(Boolean)
+      : [],
+  );
   const objects: ArtObject[] = [];
   const seen = new Set<string>();
   for (const r of raw) {
     const id = `${r.src}:${r.srcId}`;
     if (seen.has(id)) continue;
     seen.add(id);
+    if (blocked.has(id)) { reject('blocklisted'); continue; }
     if (r.y0 > r.y1) [r.y0, r.y1] = [r.y1, r.y0];
     if (r.y0 < MIN_YEAR || r.y1 > MAX_YEAR) { reject('date out of range'); continue; }
     if (r.y1 - r.y0 > maxSpan(r.y0, r.y1)) { reject('date too vague'); continue; }
@@ -135,6 +163,7 @@ async function main() {
       url: r.url,
       credit: trim(r.credit, 160),
       ...(r.hl ? { hl: 1 as const } : {}),
+      added: previousAdded.get(id) ?? (previousAdded.size ? today : BASELINE_ADDED),
       bucket: bucketKey(r.culture || g.matched),
     });
   }

@@ -49,6 +49,8 @@ export interface ArtObject {
   credit?: string;
   /** Museum flagged as a highlight / boosted / masterpiece. */
   hl?: 1;
+  /** Date (YYYY-MM-DD) the object entered the pool. A Daily only uses objects added before its date. */
+  added?: string;
   /** Diversity bucket (normalised culture / place), so a game doesn't serve three Attic vases. */
   bucket: string;
 }

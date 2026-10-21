@@ -46,7 +46,9 @@ export function Game({ data, config, settings, onExit, onPlay }: Props) {
       if (saved && saved.objectIds.every((id) => data.byId.has(id))) {
         return { objects: saved.objectIds.map((id) => data.byId.get(id)!), tiers, results: saved.results, spotlight: saved.spotlight ?? null, picker: null };
       }
-      const { objects, spotlight } = pickGame(pool, ROUNDS_PER_GAME, {
+      // Only objects that were in the pool before today, so a pool update can't change today's puzzle.
+      const eligible = pool.filter((o) => !o.added || o.added < date);
+      const { objects, spotlight } = pickGame(eligible.length >= 50 ? eligible : pool, ROUNDS_PER_GAME, {
         rng: rngFrom(seed),
         balanced: collection.balanced,
         spreadCategories: !singleCategory,
@@ -89,22 +91,23 @@ export function Game({ data, config, settings, onExit, onPlay }: Props) {
   const [imgState, setImgState] = useState<'loading' | 'ok' | 'fallback' | 'error'>('loading');
   const [lightbox, setLightbox] = useState(false);
   const [secondsLeft, setSecondsLeft] = useState(BLITZ_SECONDS);
-  const [fav, setFav] = useState(false);
+  const [fav, setFav] = useState(() => (setup.objects[setup.results.length] ? loadFavs().includes(setup.objects[setup.results.length].id) : false));
   const [flagOpen, setFlagOpen] = useState(false);
   const statsRecorded = useRef(config.format === 'daily' && setup.results.length >= setup.objects.length);
 
   const lives = config.format === 'survival' ? SURVIVAL.lives - results.filter((r) => r.max > 0 && r.total / r.max < SURVIVAL.passFraction).length : null;
 
-  // Reset per-round UI when the object changes
-  useEffect(() => {
+  // Per-round UI state is reset synchronously in advance(), so a fast click on the next
+  // round can't be wiped out by a late effect.
+  function resetRound(next: GameObject | undefined) {
     setPlace(null);
     setYear(null);
     setHints(NO_HINTS);
     setImgState('loading');
     setSecondsLeft(BLITZ_SECONDS);
     setFlagOpen(false);
-    setFav(obj ? loadFavs().includes(obj.id) : false);
-  }, [obj?.id]);
+    setFav(next ? loadFavs().includes(next.id) : false);
+  }
 
   // Preload the next image
   useEffect(() => {
@@ -216,15 +219,17 @@ export function Game({ data, config, settings, onExit, onPlay }: Props) {
 
   function advance(rs: RoundResult[]) {
     if (isOver(rs)) return finish(rs);
-    if (rs.length >= objects.length) {
+    let nextObj = objects[rs.length];
+    if (!nextObj) {
       if (!setup.picker) return finish(rs);
-      if (config.format === 'blitz' && rs.length >= ROUNDS_PER_GAME) return finish(rs);
       if (rs.length % ROUNDS_PER_GAME === 0) setup.picker.picker.resetGame();
       const o = setup.picker.picker.next();
       if (!o) return finish(rs);
+      nextObj = o;
       setObjects([...objects, o]);
       setTiers([...tiers, tierForRound(config.geo, setup.picker.rng)]);
     }
+    resetRound(nextObj);
     setPhase('guess');
   }
 
@@ -338,7 +343,7 @@ export function Game({ data, config, settings, onExit, onPlay }: Props) {
                   <span class="hint-text">
                     {obj.kind ? <b>{obj.kind}</b> : null}
                     {obj.kind && obj.medium ? ' · ' : ''}
-                    {obj.medium}
+                    {obj.medium && obj.medium.length > 110 ? obj.medium.slice(0, 108) + '…' : obj.medium}
                     {!obj.kind && !obj.medium ? CATEGORY_NAMES[obj.cat] : ''}
                   </span>
                 ) : (
@@ -374,6 +379,7 @@ export function Game({ data, config, settings, onExit, onPlay }: Props) {
                 answer={phase === 'reveal' ? obj : null}
                 hintArea={hintAreaUnit}
                 showLabels={settings.labels}
+                roundKey={`${idx}:${obj.id}`}
               />
             </>
           )}

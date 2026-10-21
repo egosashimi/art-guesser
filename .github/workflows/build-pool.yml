@@ -12,7 +12,11 @@ on:
         description: 'Comma-separated sources'
         default: 'met,aic,cma'
   schedule:
+    # Monthly: refresh every source.
     - cron: '17 6 1 * *'
+    # Daily: the Met's bot protection only tolerates a few hundred requests from CI, so we
+    # top up the Met cache a little every day (each run only fetches objects not yet cached).
+    - cron: '41 3 * * *'
   push:
     paths:
       - 'scripts/**'
@@ -43,8 +47,10 @@ jobs:
       # scheduled / manual runs fetch fresh data.
       - name: Build pool
         run: |
-          if [ "${{ github.event_name }}" = "push" ] && [ -f data/raw/met.json.gz ] && ! git diff --name-only HEAD~1 HEAD | grep -q 'scripts/sources/'; then
+          if [ "${{ github.event_name }}" = "push" ] && [ -f data/raw/cma.json.gz ] && ! git diff --name-only HEAD~1 HEAD | grep -q 'scripts/sources/'; then
             node scripts/build-pool.ts --from-cache
+          elif [ "${{ github.event.schedule }}" = "41 3 * * *" ]; then
+            node scripts/build-pool.ts --sources met,aic,cma --only-fetch met
           else
             node scripts/build-pool.ts --scale "${{ inputs.scale || '1' }}" --sources "${{ inputs.sources || 'met,aic,cma' }}"
           fi

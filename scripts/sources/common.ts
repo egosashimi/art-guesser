@@ -28,6 +28,8 @@ export interface FetchOptions {
   /** Rough cap on records requested from this source. */
   limit: number;
   log: (msg: string) => void;
+  /** Source ids already cached; sources that pay per object (the Met) skip these. */
+  skip?: Set<string>;
 }
 
 const sleep = (ms: number) => new Promise((r) => setTimeout(r, ms));

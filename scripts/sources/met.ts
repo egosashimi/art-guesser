@@ -66,7 +66,7 @@ export async function fetchMet(opts: FetchOptions): Promise<RawRecord[]> {
     for (const id of seededShuffle([...new Set(ids)], seed + dept).slice(0, Math.round(budget * 1.6))) chosen.add(id);
   }
 
-  const ids = [...chosen];
+  const ids = [...chosen].filter((id) => !opts.skip?.has(String(id)));
   opts.log(`met: fetching ${ids.length} object records…`);
   // The Met's bot protection answers 403 when requests come too fast. Go slowly, and when
   // blocked, back off for a minute; give up (keeping what we have) after repeated blocks.

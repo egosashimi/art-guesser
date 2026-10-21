@@ -28,8 +28,11 @@ export interface Region {
   continent: ContinentId;
   /** Balance group used by the selection algorithm (see src/game/selection.ts). */
   group: BalanceGroup;
-  /** Representative point used for partial-credit distance and labels: [lon, lat]. */
+  /** Representative point used for partial-credit distance: [lon, lat]. */
   center: [number, number];
+  /** Short map label and where to put it, if different from `center`. */
+  short: string;
+  label?: [number, number];
   countries: string[];
 }
 
@@ -59,95 +62,95 @@ export const BALANCE_GROUP_NAMES: Record<BalanceGroup, string> = {
 export const REGIONS: Region[] = [
   // Europe
   {
-    id: 'northern-europe', name: 'Britain, Ireland & Scandinavia', continent: 'europe', group: 'europe', center: [5, 59],
+    id: 'northern-europe', name: 'Britain, Ireland & Scandinavia', continent: 'europe', group: 'europe', center: [5, 59], short: 'Britain & Scandinavia', label: [12, 63],
     countries: ['United Kingdom', 'Ireland', 'Isle of Man', 'Jersey', 'Guernsey', 'Iceland', 'Norway', 'Sweden', 'Finland', 'Åland', 'Denmark', 'Faeroe Is.', 'Estonia', 'Latvia', 'Lithuania'],
   },
   {
-    id: 'western-europe', name: 'Western & Central Europe', continent: 'europe', group: 'europe', center: [6, 49],
+    id: 'western-europe', name: 'Western & Central Europe', continent: 'europe', group: 'europe', center: [6, 49], short: 'W. & Central Europe', label: [-2, 48],
     countries: ['France', 'Monaco', 'Belgium', 'Netherlands', 'Luxembourg', 'Germany', 'Switzerland', 'Liechtenstein', 'Austria'],
   },
   {
-    id: 'southern-europe', name: 'Mediterranean Europe', continent: 'europe', group: 'europe', center: [14, 41],
+    id: 'southern-europe', name: 'Mediterranean Europe', continent: 'europe', group: 'europe', center: [14, 41], short: 'Mediterranean Europe', label: [6, 39.5],
     countries: ['Spain', 'Portugal', 'Andorra', 'Italy', 'San Marino', 'Vatican', 'Malta', 'Greece', 'Slovenia', 'Croatia', 'Bosnia and Herz.', 'Serbia', 'Montenegro', 'Kosovo', 'Albania', 'Macedonia'],
   },
   {
-    id: 'eastern-europe', name: 'Eastern Europe', continent: 'europe', group: 'europe', center: [27, 50],
+    id: 'eastern-europe', name: 'Eastern Europe', continent: 'europe', group: 'europe', center: [27, 50], short: 'Eastern Europe', label: [38, 55],
     countries: ['Poland', 'Czechia', 'Slovakia', 'Hungary', 'Romania', 'Bulgaria', 'Moldova', 'Ukraine', 'Belarus', 'Russia'],
   },
   // Africa
   {
-    id: 'north-africa', name: 'North Africa & the Nile', continent: 'africa', group: 'africa', center: [17, 27],
+    id: 'north-africa', name: 'North Africa & the Nile', continent: 'africa', group: 'africa', center: [17, 27], short: 'North Africa & Nile', label: [12, 25],
     countries: ['Egypt', 'Libya', 'Tunisia', 'Algeria', 'Morocco', 'W. Sahara', 'Sudan'],
   },
   {
-    id: 'west-africa', name: 'West Africa', continent: 'africa', group: 'africa', center: [-3, 11],
+    id: 'west-africa', name: 'West Africa', continent: 'africa', group: 'africa', center: [-3, 11], short: 'West Africa', label: [-6, 13],
     countries: ['Mauritania', 'Senegal', 'Gambia', 'Guinea-Bissau', 'Guinea', 'Sierra Leone', 'Liberia', "Côte d'Ivoire", 'Mali', 'Burkina Faso', 'Ghana', 'Togo', 'Benin', 'Niger', 'Nigeria', 'Cabo Verde', 'Saint Helena'],
   },
   {
-    id: 'central-africa', name: 'Central Africa', continent: 'africa', group: 'africa', center: [18, -2],
+    id: 'central-africa', name: 'Central Africa', continent: 'africa', group: 'africa', center: [18, -2], short: 'Central Africa', label: [20, -3],
     countries: ['Cameroon', 'Central African Rep.', 'Chad', 'Gabon', 'Eq. Guinea', 'Congo', 'Dem. Rep. Congo', 'Angola', 'São Tomé and Principe'],
   },
   {
-    id: 'east-africa', name: 'East Africa & the Horn', continent: 'africa', group: 'africa', center: [38, 2],
+    id: 'east-africa', name: 'East Africa & the Horn', continent: 'africa', group: 'africa', center: [38, 2], short: 'East Africa', label: [40, 4],
     countries: ['Ethiopia', 'Eritrea', 'Djibouti', 'Somalia', 'Somaliland', 'Kenya', 'Uganda', 'Rwanda', 'Burundi', 'Tanzania', 'S. Sudan', 'Madagascar', 'Comoros', 'Seychelles', 'Mauritius'],
   },
   {
-    id: 'southern-africa', name: 'Southern Africa', continent: 'africa', group: 'africa', center: [26, -20],
+    id: 'southern-africa', name: 'Southern Africa', continent: 'africa', group: 'africa', center: [26, -20], short: 'Southern Africa', label: [24, -24],
     countries: ['South Africa', 'Namibia', 'Botswana', 'Lesotho', 'eSwatini', 'Zimbabwe', 'Zambia', 'Malawi', 'Mozambique'],
   },
   // Asia
   {
-    id: 'west-asia', name: 'Near East, Anatolia & Arabia', continent: 'asia', group: 'west-asia', center: [40, 32],
+    id: 'west-asia', name: 'Near East, Anatolia & Arabia', continent: 'asia', group: 'west-asia', center: [40, 32], short: 'Near East & Arabia', label: [45, 22],
     countries: ['Turkey', 'Cyprus', 'N. Cyprus', 'Syria', 'Lebanon', 'Israel', 'Palestine', 'Jordan', 'Iraq', 'Saudi Arabia', 'Yemen', 'Oman', 'United Arab Emirates', 'Qatar', 'Kuwait', 'Bahrain', 'Georgia', 'Armenia', 'Azerbaijan'],
   },
   {
-    id: 'central-asia', name: 'Iran, Central Asia & the Steppe', continent: 'asia', group: 'south-central-asia', center: [62, 40],
+    id: 'central-asia', name: 'Iran, Central Asia & the Steppe', continent: 'asia', group: 'south-central-asia', center: [62, 40], short: 'Iran & Central Asia', label: [66, 45],
     countries: ['Iran', 'Afghanistan', 'Turkmenistan', 'Uzbekistan', 'Tajikistan', 'Kyrgyzstan', 'Kazakhstan', 'Mongolia'],
   },
   {
-    id: 'south-asia', name: 'South Asia', continent: 'asia', group: 'south-central-asia', center: [78, 22],
+    id: 'south-asia', name: 'South Asia', continent: 'asia', group: 'south-central-asia', center: [78, 22], short: 'South Asia', label: [79, 20],
     countries: ['India', 'Pakistan', 'Bangladesh', 'Nepal', 'Bhutan', 'Sri Lanka', 'Maldives', 'Siachen Glacier', 'Br. Indian Ocean Ter.'],
   },
   {
-    id: 'east-asia', name: 'East Asia', continent: 'asia', group: 'east-asia', center: [115, 35],
+    id: 'east-asia', name: 'East Asia', continent: 'asia', group: 'east-asia', center: [115, 35], short: 'East Asia', label: [112, 36],
     countries: ['China', 'Hong Kong', 'Macao', 'Taiwan', 'Japan', 'North Korea', 'South Korea'],
   },
   {
-    id: 'southeast-asia', name: 'Southeast Asia', continent: 'asia', group: 'southeast-asia', center: [108, 8],
+    id: 'southeast-asia', name: 'Southeast Asia', continent: 'asia', group: 'southeast-asia', center: [108, 8], short: 'Southeast Asia', label: [108, 6],
     countries: ['Myanmar', 'Thailand', 'Laos', 'Cambodia', 'Vietnam', 'Malaysia', 'Singapore', 'Indonesia', 'Brunei', 'Philippines', 'Timor-Leste'],
   },
   // Oceania
   {
-    id: 'australia', name: 'Australia', continent: 'oceania', group: 'oceania', center: [134, -25],
+    id: 'australia', name: 'Australia', continent: 'oceania', group: 'oceania', center: [134, -25], short: 'Australia', label: [134, -25],
     countries: ['Australia', 'Ashmore and Cartier Is.', 'Indian Ocean Ter.', 'Norfolk Island', 'Heard I. and McDonald Is.'],
   },
   {
-    id: 'melanesia', name: 'New Guinea & Melanesia', continent: 'oceania', group: 'oceania', center: [152, -7],
+    id: 'melanesia', name: 'New Guinea & Melanesia', continent: 'oceania', group: 'oceania', center: [152, -7], short: 'Melanesia', label: [152, -9],
     countries: ['Papua New Guinea', 'Solomon Is.', 'Vanuatu', 'New Caledonia', 'Fiji'],
   },
   {
-    id: 'polynesia', name: 'Polynesia, Micronesia & Aotearoa', continent: 'oceania', group: 'oceania', center: [-170, -10],
+    id: 'polynesia', name: 'Polynesia, Micronesia & Aotearoa', continent: 'oceania', group: 'oceania', center: [-170, -10], short: 'Polynesia', label: [-176, -22],
     countries: ['New Zealand', 'Samoa', 'American Samoa', 'Tonga', 'Fr. Polynesia', 'Cook Is.', 'Niue', 'Wallis and Futuna Is.', 'Pitcairn Is.', 'Kiribati', 'Micronesia', 'Marshall Is.', 'N. Mariana Is.', 'Guam', 'Palau', 'Nauru'],
   },
   // Americas
   {
-    id: 'north-america', name: 'North America & the Arctic', continent: 'north-america', group: 'north-america', center: [-98, 45],
+    id: 'north-america', name: 'North America & the Arctic', continent: 'north-america', group: 'north-america', center: [-98, 45], short: 'North America', label: [-100, 48],
     countries: ['United States of America', 'Canada', 'Greenland', 'St. Pierre and Miquelon', 'Bermuda'],
   },
   {
-    id: 'mesoamerica', name: 'Mexico & Central America', continent: 'north-america', group: 'latin-america', center: [-95, 18],
+    id: 'mesoamerica', name: 'Mexico & Central America', continent: 'north-america', group: 'latin-america', center: [-95, 18], short: 'Mexico & Central Am.', label: [-100, 20],
     countries: ['Mexico', 'Guatemala', 'Belize', 'El Salvador', 'Honduras', 'Nicaragua', 'Costa Rica', 'Panama'],
   },
   {
-    id: 'caribbean', name: 'Caribbean', continent: 'north-america', group: 'latin-america', center: [-72, 19],
+    id: 'caribbean', name: 'Caribbean', continent: 'north-america', group: 'latin-america', center: [-72, 19], short: 'Caribbean', label: [-70, 21],
     countries: ['Cuba', 'Haiti', 'Dominican Rep.', 'Jamaica', 'Puerto Rico', 'Bahamas', 'Trinidad and Tobago', 'Barbados', 'Grenada', 'Saint Lucia', 'St. Vin. and Gren.', 'Dominica', 'Antigua and Barb.', 'St. Kitts and Nevis', 'Cayman Is.', 'Turks and Caicos Is.', 'British Virgin Is.', 'U.S. Virgin Is.', 'Anguilla', 'Montserrat', 'Aruba', 'Curaçao', 'Sint Maarten', 'St-Martin', 'St-Barthélemy'],
   },
   {
-    id: 'andes', name: 'Andes & Pacific South America', continent: 'south-america', group: 'latin-america', center: [-74, -10],
+    id: 'andes', name: 'Andes & Pacific South America', continent: 'south-america', group: 'latin-america', center: [-74, -10], short: 'Andes', label: [-79, -20],
     countries: ['Colombia', 'Ecuador', 'Peru', 'Bolivia', 'Chile'],
   },
   {
-    id: 'eastern-south-america', name: 'Amazonia & Atlantic South America', continent: 'south-america', group: 'latin-america', center: [-55, -15],
+    id: 'eastern-south-america', name: 'Amazonia & Atlantic South America', continent: 'south-america', group: 'latin-america', center: [-55, -15], short: 'Amazonia & Atlantic', label: [-50, -6],
     countries: ['Venezuela', 'Guyana', 'Suriname', 'Brazil', 'Paraguay', 'Uruguay', 'Argentina', 'Falkland Is.', 'S. Geo. and the Is.'],
   },
 ];
