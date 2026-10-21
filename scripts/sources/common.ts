@@ -33,17 +33,18 @@ export interface FetchOptions {
 const sleep = (ms: number) => new Promise((r) => setTimeout(r, ms));
 
 /** fetch() + JSON with retries and a polite delay. Returns null on persistent failure. */
-export async function getJson<T = any>(url: string, opts: { retries?: number; delayMs?: number } = {}): Promise<T | null> {
+export async function getJson<T = any>(url: string, opts: { retries?: number; delayMs?: number; status?: { last: number } } = {}): Promise<T | null> {
   const retries = opts.retries ?? 3;
   for (let attempt = 0; attempt <= retries; attempt++) {
     try {
       const res = await fetch(url, {
         headers: { 'User-Agent': 'art-guesser-pool-builder (+https://github.com/egosashimi/art-guesser)', Accept: 'application/json' },
       });
+      if (opts.status) opts.status.last = res.status;
       if (res.status === 404) return null;
       if (res.status === 429 || res.status >= 500) throw new Error(`HTTP ${res.status}`);
       if (!res.ok) {
-        console.warn(`  ${url} → HTTP ${res.status}`);
+        if (!opts.status) console.warn(`  ${url} → HTTP ${res.status}`);
         return null;
       }
       const json = (await res.json()) as T;

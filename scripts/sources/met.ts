@@ -68,11 +68,28 @@ export async function fetchMet(opts: FetchOptions): Promise<RawRecord[]> {
 
   const ids = [...chosen];
   opts.log(`met: fetching ${ids.length} object records…`);
+  // The Met's bot protection answers 403 when requests come too fast. Go slowly, and when
+  // blocked, back off for a minute; give up (keeping what we have) after repeated blocks.
   let done = 0;
-  const records = await pool(ids, 6, async (id) => {
-    const o = await getJson<any>(`${API}/objects/${id}`, { delayMs: 60 });
+  let blockedStreak = 0;
+  let pauses = 0;
+  const records: (RawRecord | null)[] = [];
+  await pool(ids, 2, async (id) => {
+    if (pauses > 4) return;
+    const status = { last: 0 };
+    const o = await getJson<any>(`${API}/objects/${id}`, { delayMs: 450, status });
+    if (status.last === 403) {
+      if (++blockedStreak >= 8) {
+        blockedStreak = 0;
+        pauses++;
+        opts.log(`met: blocked (403) after ${done} records; pausing 60 s (${pauses}/5)`);
+        await new Promise((r) => setTimeout(r, 60000));
+      } else await new Promise((r) => setTimeout(r, 2000));
+      return;
+    }
+    blockedStreak = 0;
     if (++done % 250 === 0) opts.log(`met: ${done}/${ids.length}`);
-    return o ? toRecord(o) : null;
+    records.push(o ? toRecord(o) : null);
   });
   return records.filter((r): r is RawRecord => r !== null);
 }

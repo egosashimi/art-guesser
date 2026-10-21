@@ -46,12 +46,16 @@ export async function fetchCma(opts: FetchOptions): Promise<RawRecord[]> {
       opts.log(`cma: ${dept}: no results`);
       continue;
     }
-    // Two slices from different offsets for some variety without fetching everything.
-    const chunk = Math.ceil(want / 2);
-    for (const frac of [0.1, 0.6]) {
-      const skip = Math.max(0, Math.min(total - chunk, Math.floor(total * frac)));
-      const res = await getJson<any>(`${base}&limit=${chunk}&skip=${skip}`, { delayMs: 300 });
-      add(res?.data);
+    if (total <= Math.max(want * 1.5, 400)) {
+      // Small department (e.g. Oceania): take everything.
+      for (let skip = 0; skip < total; skip += 500) add((await getJson<any>(`${base}&limit=500&skip=${skip}`, { delayMs: 300 }))?.data);
+    } else {
+      // Four slices from spread-out offsets for variety without fetching everything.
+      const chunk = Math.ceil(want / 4);
+      for (const frac of [0.05, 0.3, 0.55, 0.8]) {
+        const skip = Math.max(0, Math.min(total - chunk, Math.floor(total * frac)));
+        add((await getJson<any>(`${base}&limit=${chunk}&skip=${skip}`, { delayMs: 300 }))?.data);
+      }
     }
     opts.log(`cma: ${dept}: ${total} candidates`);
   }
