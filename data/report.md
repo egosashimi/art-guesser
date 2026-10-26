@@ -1,12 +1,12 @@
 # Pool report
 
-Built 2026-10-25T08:53:32.761Z — **12661 objects**
+Built 2026-10-26T09:25:34.119Z — **12662 objects**
 
 ### By source
 
 | | count | share |
 |---|---:|---:|
-| met | 4023 | 31.8% |
+| met | 4024 | 31.8% |
 | vam | 2828 | 22.3% |
 | cma | 2240 | 17.7% |
 | aic | 2127 | 16.8% |
@@ -17,7 +17,7 @@ Built 2026-10-25T08:53:32.761Z — **12661 objects**
 
 | | count | share |
 |---|---:|---:|
-| Europe | 4848 | 38.3% |
+| Europe | 4849 | 38.3% |
 | East Asia | 2015 | 15.9% |
 | Iran, Central & South Asia | 1555 | 12.3% |
 | Africa | 1265 | 10.0% |
@@ -31,9 +31,9 @@ Built 2026-10-25T08:53:32.761Z — **12661 objects**
 
 | | count | share |
 |---|---:|---:|
-| Western & Central Europe | 2526 | 20.0% |
+| Western & Central Europe | 2526 | 19.9% |
 | East Asia | 2015 | 15.9% |
-| Mediterranean Europe | 1592 | 12.6% |
+| Mediterranean Europe | 1593 | 12.6% |
 | Near East, Anatolia & Arabia | 910 | 7.2% |
 | South Asia | 860 | 6.8% |
 | North Africa & the Nile | 836 | 6.6% |
@@ -61,7 +61,7 @@ Built 2026-10-25T08:53:32.761Z — **12661 objects**
 | sculpture | 2655 | 21.0% |
 | ceramic | 2347 | 18.5% |
 | metal | 2083 | 16.5% |
-| painting | 2008 | 15.9% |
+| painting | 2009 | 15.9% |
 | textile | 1507 | 11.9% |
 | paper | 1381 | 10.9% |
 | other | 680 | 5.4% |
@@ -75,7 +75,7 @@ Built 2026-10-25T08:53:32.761Z — **12661 objects**
 | c. 1–500 CE | 542 | 4.3% |
 | d. 500–1000 | 775 | 6.1% |
 | e. 1000–1500 | 1714 | 13.5% |
-| f. 1500–1800 | 3949 | 31.2% |
+| f. 1500–1800 | 3950 | 31.2% |
 | g. 1800–1950 | 4223 | 33.4% |
 
 ### Precision (radius km)
@@ -83,7 +83,7 @@ Built 2026-10-25T08:53:32.761Z — **12661 objects**
 | | count | share |
 |---|---:|---:|
 | ≤500 (region/country) | 5595 | 44.2% |
-| ≤60 (city/site) | 2778 | 21.9% |
+| ≤60 (city/site) | 2779 | 21.9% |
 | ≤200 (district/people) | 2192 | 17.3% |
 | >500 (large country/area) | 2096 | 16.6% |
 
