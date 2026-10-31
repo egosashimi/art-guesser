@@ -1,46 +1,46 @@
 # Pool report
 
-Built 2026-10-30T10:38:15.265Z — **12983 objects**
+Built 2026-10-31T10:05:52.251Z — **13020 objects**
 
 ### By source
 
 | | count | share |
 |---|---:|---:|
-| met | 4350 | 33.5% |
-| vam | 2825 | 21.8% |
-| cma | 2240 | 17.3% |
-| aic | 2125 | 16.4% |
-| rijks | 1114 | 8.6% |
+| met | 4388 | 33.7% |
+| vam | 2825 | 21.7% |
+| cma | 2240 | 17.2% |
+| aic | 2125 | 16.3% |
+| rijks | 1113 | 8.5% |
 | tepapa | 329 | 2.5% |
 
 ### By balance group
 
 | | count | share |
 |---|---:|---:|
-| Europe | 5100 | 39.3% |
-| East Asia | 2039 | 15.7% |
+| Europe | 5126 | 39.4% |
+| East Asia | 2040 | 15.7% |
 | Iran, Central & South Asia | 1563 | 12.0% |
-| Africa | 1266 | 9.8% |
+| Africa | 1266 | 9.7% |
 | Near East & Mediterranean Asia | 912 | 7.0% |
-| North America | 695 | 5.4% |
+| North America | 705 | 5.4% |
 | Latin America & Caribbean | 614 | 4.7% |
-| Southeast Asia | 409 | 3.2% |
+| Southeast Asia | 409 | 3.1% |
 | Oceania | 385 | 3.0% |
 
 ### By region
 
 | | count | share |
 |---|---:|---:|
-| Western & Central Europe | 2672 | 20.6% |
-| East Asia | 2039 | 15.7% |
-| Mediterranean Europe | 1664 | 12.8% |
+| Western & Central Europe | 2692 | 20.7% |
+| East Asia | 2040 | 15.7% |
+| Mediterranean Europe | 1667 | 12.8% |
 | Near East, Anatolia & Arabia | 912 | 7.0% |
 | South Asia | 868 | 6.7% |
 | North Africa & the Nile | 837 | 6.4% |
-| North America & the Arctic | 695 | 5.4% |
-| Iran, Central Asia & the Steppe | 695 | 5.4% |
-| Britain, Ireland & Scandinavia | 603 | 4.6% |
-| Southeast Asia | 409 | 3.2% |
+| North America & the Arctic | 705 | 5.4% |
+| Iran, Central Asia & the Steppe | 695 | 5.3% |
+| Britain, Ireland & Scandinavia | 606 | 4.7% |
+| Southeast Asia | 409 | 3.1% |
 | Mexico & Central America | 309 | 2.4% |
 | Andes & Pacific South America | 297 | 2.3% |
 | Polynesia, Micronesia & Aotearoa | 280 | 2.2% |
@@ -58,34 +58,34 @@ Built 2026-10-30T10:38:15.265Z — **12983 objects**
 
 | | count | share |
 |---|---:|---:|
-| sculpture | 2698 | 20.8% |
-| ceramic | 2401 | 18.5% |
-| painting | 2171 | 16.7% |
-| metal | 2120 | 16.3% |
-| textile | 1511 | 11.6% |
-| paper | 1397 | 10.8% |
-| other | 685 | 5.3% |
+| sculpture | 2701 | 20.7% |
+| ceramic | 2411 | 18.5% |
+| painting | 2184 | 16.8% |
+| metal | 2125 | 16.3% |
+| textile | 1513 | 11.6% |
+| paper | 1398 | 10.7% |
+| other | 688 | 5.3% |
 
 ### By era
 
 | | count | share |
 |---|---:|---:|
 | a. before 1000 BCE | 496 | 3.8% |
-| b. 1000–1 BCE | 972 | 7.5% |
+| b. 1000–1 BCE | 973 | 7.5% |
 | c. 1–500 CE | 547 | 4.2% |
 | d. 500–1000 | 779 | 6.0% |
-| e. 1000–1500 | 1756 | 13.5% |
-| f. 1500–1800 | 4122 | 31.7% |
-| g. 1800–1950 | 4311 | 33.2% |
+| e. 1000–1500 | 1758 | 13.5% |
+| f. 1500–1800 | 4145 | 31.8% |
+| g. 1800–1950 | 4322 | 33.2% |
 
 ### Precision (radius km)
 
 | | count | share |
 |---|---:|---:|
-| ≤500 (region/country) | 5696 | 43.9% |
-| ≤60 (city/site) | 2936 | 22.6% |
-| ≤200 (district/people) | 2221 | 17.1% |
-| >500 (large country/area) | 2130 | 16.4% |
+| ≤500 (region/country) | 5706 | 43.8% |
+| ≤60 (city/site) | 2957 | 22.7% |
+| ≤200 (district/people) | 2225 | 17.1% |
+| >500 (large country/area) | 2132 | 16.4% |
 
 ### Top buckets
 
@@ -128,18 +128,18 @@ Built 2026-10-30T10:38:15.265Z — **12983 objects**
 | spain|paper|6 | 47 | 0.4% |
 | japan|ceramic|6 | 47 | 0.4% |
 | japan|metal|5 | 45 | 0.3% |
+| amsterdam|painting|5 | 45 | 0.3% |
 | india|sculpture|3 | 43 | 0.3% |
 | american|sculpture|6 | 43 | 0.3% |
-| amsterdam|painting|5 | 43 | 0.3% |
 
 ### Rejected
 
-- excluded object type: 411
-- could not geocode: 1066
+- excluded object type: 412
+- could not geocode: 1068
 - date too vague: 886
-- date out of range: 434
-- duplicate title in bucket: 2993
-- bucket cap: 1382
+- date out of range: 435
+- duplicate title in bucket: 2996
+- bucket cap: 1388
 
 ### Most common unmatched place/culture strings (add to scripts/gazetteer.ts)
 
@@ -151,10 +151,10 @@ Built 2026-10-30T10:38:15.265Z — **12983 objects**
 - `italic` × 6
 - `th century` × 5
 - `master` × 5
+- `died` × 5
 - `avar` × 5
 - `european` × 5
 - `unknown` × 5
-- `died` × 4
 - `working` × 3
 - `recorded` × 3
 - `eastern mediterranean region` × 3
@@ -188,6 +188,7 @@ Built 2026-10-30T10:38:15.265Z — **12983 objects**
 - `active in` × 1
 - `mentioned` × 1
 - `died after` × 1
+- `ostrogothic` × 1
 - `gloucester` × 1
 - `ipswich` × 1
 - `rochester` × 1
