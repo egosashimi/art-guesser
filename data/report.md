@@ -1,54 +1,54 @@
 # Pool report
 
-Built 2026-11-06T11:31:52.029Z — **16861 objects**
+Built 2026-11-07T10:53:31.451Z — **17289 objects**
 
 ### By source
 
 | | count | share |
 |---|---:|---:|
-| met | 6089 | 36.1% |
-| vam | 3602 | 21.4% |
-| aic | 3117 | 18.5% |
-| cma | 2250 | 13.3% |
-| rijks | 1474 | 8.7% |
-| tepapa | 329 | 2.0% |
+| met | 6523 | 37.7% |
+| vam | 3601 | 20.8% |
+| aic | 3116 | 18.0% |
+| cma | 2250 | 13.0% |
+| rijks | 1470 | 8.5% |
+| tepapa | 329 | 1.9% |
 
 ### By balance group
 
 | | count | share |
 |---|---:|---:|
-| Europe | 6841 | 40.6% |
-| East Asia | 2580 | 15.3% |
-| Iran, Central & South Asia | 2060 | 12.2% |
-| Africa | 1546 | 9.2% |
-| Near East & Mediterranean Asia | 1191 | 7.1% |
-| North America | 864 | 5.1% |
-| Latin America & Caribbean | 842 | 5.0% |
-| Southeast Asia | 544 | 3.2% |
-| Oceania | 393 | 2.3% |
+| Europe | 7045 | 40.7% |
+| East Asia | 2586 | 15.0% |
+| Iran, Central & South Asia | 2072 | 12.0% |
+| Africa | 1657 | 9.6% |
+| Near East & Mediterranean Asia | 1217 | 7.0% |
+| Latin America & Caribbean | 895 | 5.2% |
+| North America | 870 | 5.0% |
+| Southeast Asia | 550 | 3.2% |
+| Oceania | 397 | 2.3% |
 
 ### By region
 
 | | count | share |
 |---|---:|---:|
-| Western & Central Europe | 3540 | 21.0% |
-| East Asia | 2580 | 15.3% |
-| Mediterranean Europe | 2277 | 13.5% |
-| South Asia | 1191 | 7.1% |
-| Near East, Anatolia & Arabia | 1191 | 7.1% |
-| North Africa & the Nile | 1094 | 6.5% |
-| Iran, Central Asia & the Steppe | 869 | 5.2% |
-| North America & the Arctic | 864 | 5.1% |
-| Britain, Ireland & Scandinavia | 820 | 4.9% |
-| Southeast Asia | 544 | 3.2% |
-| Andes & Pacific South America | 420 | 2.5% |
-| Mexico & Central America | 414 | 2.5% |
-| Polynesia, Micronesia & Aotearoa | 284 | 1.7% |
-| Eastern Europe | 204 | 1.2% |
-| Central Africa | 192 | 1.1% |
-| West Africa | 170 | 1.0% |
-| New Guinea & Melanesia | 106 | 0.6% |
-| East Africa & the Horn | 66 | 0.4% |
+| Western & Central Europe | 3649 | 21.1% |
+| East Asia | 2586 | 15.0% |
+| Mediterranean Europe | 2346 | 13.6% |
+| Near East, Anatolia & Arabia | 1217 | 7.0% |
+| South Asia | 1200 | 6.9% |
+| North Africa & the Nile | 1199 | 6.9% |
+| Iran, Central Asia & the Steppe | 872 | 5.0% |
+| North America & the Arctic | 870 | 5.0% |
+| Britain, Ireland & Scandinavia | 842 | 4.9% |
+| Southeast Asia | 550 | 3.2% |
+| Andes & Pacific South America | 457 | 2.6% |
+| Mexico & Central America | 430 | 2.5% |
+| Polynesia, Micronesia & Aotearoa | 286 | 1.7% |
+| Eastern Europe | 208 | 1.2% |
+| Central Africa | 195 | 1.1% |
+| West Africa | 172 | 1.0% |
+| New Guinea & Melanesia | 108 | 0.6% |
+| East Africa & the Horn | 67 | 0.4% |
 | Southern Africa | 24 | 0.1% |
 | Amazonia & Atlantic South America | 6 | 0.0% |
 | Australia | 3 | 0.0% |
@@ -58,108 +58,108 @@ Built 2026-11-06T11:31:52.029Z — **16861 objects**
 
 | | count | share |
 |---|---:|---:|
-| sculpture | 3418 | 20.3% |
-| ceramic | 3154 | 18.7% |
-| metal | 2884 | 17.1% |
-| painting | 2787 | 16.5% |
-| textile | 2025 | 12.0% |
-| paper | 1688 | 10.0% |
-| other | 905 | 5.4% |
+| sculpture | 3510 | 20.3% |
+| ceramic | 3241 | 18.7% |
+| metal | 2977 | 17.2% |
+| painting | 2873 | 16.6% |
+| textile | 2046 | 11.8% |
+| paper | 1711 | 9.9% |
+| other | 931 | 5.4% |
 
 ### By era
 
 | | count | share |
 |---|---:|---:|
-| a. before 1000 BCE | 729 | 4.3% |
-| b. 1000–1 BCE | 1225 | 7.3% |
-| c. 1–500 CE | 747 | 4.4% |
-| d. 500–1000 | 1000 | 5.9% |
-| e. 1000–1500 | 2222 | 13.2% |
-| f. 1500–1800 | 5535 | 32.8% |
-| g. 1800–1950 | 5403 | 32.0% |
+| a. before 1000 BCE | 823 | 4.8% |
+| b. 1000–1 BCE | 1257 | 7.3% |
+| c. 1–500 CE | 772 | 4.5% |
+| d. 500–1000 | 1031 | 6.0% |
+| e. 1000–1500 | 2275 | 13.2% |
+| f. 1500–1800 | 5667 | 32.8% |
+| g. 1800–1950 | 5464 | 31.6% |
 
 ### Precision (radius km)
 
 | | count | share |
 |---|---:|---:|
-| ≤500 (region/country) | 7440 | 44.1% |
-| ≤60 (city/site) | 3912 | 23.2% |
-| >500 (large country/area) | 2780 | 16.5% |
-| ≤200 (district/people) | 2729 | 16.2% |
+| ≤500 (region/country) | 7579 | 43.8% |
+| ≤60 (city/site) | 4106 | 23.7% |
+| >500 (large country/area) | 2818 | 16.3% |
+| ≤200 (district/people) | 2786 | 16.1% |
 
 ### Top buckets
 
 | | count | share |
 |---|---:|---:|
-| italy|painting|4 | 60 | 0.4% |
-| france|painting|5 | 60 | 0.4% |
-| italy|painting|5 | 60 | 0.4% |
-| france|paper|5 | 60 | 0.4% |
-| delft|ceramic|5 | 60 | 0.4% |
-| italy|paper|4 | 60 | 0.4% |
-| japan|paper|6 | 60 | 0.4% |
-| france|paper|6 | 60 | 0.4% |
-| india|textile|6 | 60 | 0.4% |
-| pakistan|sculpture|2 | 60 | 0.4% |
-| france|painting|6 | 60 | 0.4% |
-| united states|painting|6 | 60 | 0.4% |
-| china|sculpture|3 | 60 | 0.4% |
-| china|ceramic|3 | 60 | 0.4% |
-| china|ceramic|5 | 60 | 0.4% |
-| england|paper|6 | 60 | 0.4% |
-| egypt|sculpture|0 | 60 | 0.4% |
-| egypt|sculpture|1 | 60 | 0.4% |
-| paris|painting|6 | 60 | 0.4% |
-| spain|paper|6 | 60 | 0.4% |
-| japan|paper|5 | 60 | 0.4% |
-| egypt|textile|1 | 60 | 0.4% |
-| indonesia|sculpture|3 | 60 | 0.4% |
-| japan|textile|6 | 60 | 0.4% |
-| china|ceramic|4 | 60 | 0.4% |
-| china|ceramic|6 | 60 | 0.4% |
-| china|painting|5 | 60 | 0.4% |
-| japan|ceramic|5 | 60 | 0.4% |
-| japan|ceramic|6 | 60 | 0.4% |
-| china|sculpture|5 | 60 | 0.4% |
-| china|paper|6 | 60 | 0.4% |
-| netherlands|paper|5 | 60 | 0.4% |
-| nepal|metal|6 | 60 | 0.4% |
-| japan|metal|5 | 60 | 0.4% |
-| american|painting|6 | 60 | 0.4% |
-| cypriot|sculpture|1 | 60 | 0.4% |
-| babylonian|other|1 | 60 | 0.4% |
-| netherlands|ceramic|5 | 60 | 0.4% |
-| tibet|metal|6 | 60 | 0.4% |
-| france|metal|6 | 59 | 0.3% |
+| france|painting|5 | 60 | 0.3% |
+| italy|painting|5 | 60 | 0.3% |
+| italy|painting|4 | 60 | 0.3% |
+| france|paper|5 | 60 | 0.3% |
+| delft|ceramic|5 | 60 | 0.3% |
+| italy|paper|4 | 60 | 0.3% |
+| japan|paper|6 | 60 | 0.3% |
+| france|paper|6 | 60 | 0.3% |
+| india|textile|6 | 60 | 0.3% |
+| pakistan|sculpture|2 | 60 | 0.3% |
+| france|painting|6 | 60 | 0.3% |
+| united states|painting|6 | 60 | 0.3% |
+| china|sculpture|3 | 60 | 0.3% |
+| china|ceramic|3 | 60 | 0.3% |
+| china|ceramic|5 | 60 | 0.3% |
+| england|paper|6 | 60 | 0.3% |
+| egypt|sculpture|0 | 60 | 0.3% |
+| egypt|sculpture|1 | 60 | 0.3% |
+| paris|painting|6 | 60 | 0.3% |
+| spain|paper|6 | 60 | 0.3% |
+| japan|paper|5 | 60 | 0.3% |
+| egypt|textile|1 | 60 | 0.3% |
+| indonesia|sculpture|3 | 60 | 0.3% |
+| japan|textile|6 | 60 | 0.3% |
+| china|ceramic|4 | 60 | 0.3% |
+| china|ceramic|6 | 60 | 0.3% |
+| china|painting|5 | 60 | 0.3% |
+| japan|ceramic|5 | 60 | 0.3% |
+| japan|ceramic|6 | 60 | 0.3% |
+| china|sculpture|5 | 60 | 0.3% |
+| china|paper|6 | 60 | 0.3% |
+| netherlands|paper|5 | 60 | 0.3% |
+| nepal|metal|6 | 60 | 0.3% |
+| japan|metal|5 | 60 | 0.3% |
+| american|painting|6 | 60 | 0.3% |
+| paris|painting|5 | 60 | 0.3% |
+| cypriot|sculpture|1 | 60 | 0.3% |
+| babylonian|other|1 | 60 | 0.3% |
+| amsterdam|painting|5 | 60 | 0.3% |
+| netherlands|ceramic|5 | 60 | 0.3% |
 
 ### Rejected
 
-- excluded object type: 594
-- could not geocode: 1637
-- date too vague: 1217
-- date out of range: 585
-- duplicate title in bucket: 4898
-- bucket cap: 2584
+- excluded object type: 613
+- could not geocode: 1693
+- date too vague: 1284
+- date out of range: 586
+- duplicate title in bucket: 4948
+- bucket cap: 2673
 
 ### Most common unmatched place/culture strings (add to scripts/gazetteer.ts)
 
 - `europe` × 29
+- `active` × 21
 - `eastern mediterranean region` × 21
 - `mediterranean region` × 19
-- `active` × 18
+- `avar` × 11
+- `european` × 11
 - `corona` × 11
-- `european` × 10
+- `master` × 10
 - `italic` × 9
-- `avar` × 9
 - `shantou` × 9
 - `africa, unknown maker` × 8
 - `died` × 7
 - `th century` × 6
-- `master` × 6
+- `recorded` × 5
 - `kalkar` × 5
 - `leeuwarden` × 5
 - `unknown` × 5
-- `recorded` × 4
 - `working` × 3
 - `sandwich` × 3
 - `africa` × 3
@@ -204,6 +204,9 @@ Built 2026-11-06T11:31:52.029Z — **16861 objects**
 - `master in` × 1
 - `working until` × 1
 - `warden` × 1
+- `entered` × 1
+- `after` × 1
+- `registered new mark` × 1
 - `gloucester` × 1
 - `ipswich` × 1
 - `rochester` × 1
