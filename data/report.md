@@ -1,12 +1,12 @@
 # Pool report
 
-Built 2026-11-10T11:48:20.850Z — **17289 objects**
+Built 2026-11-11T11:31:16.227Z — **17337 objects**
 
 ### By source
 
 | | count | share |
 |---|---:|---:|
-| met | 6523 | 37.7% |
+| met | 6571 | 37.9% |
 | vam | 3601 | 20.8% |
 | aic | 3116 | 18.0% |
 | cma | 2250 | 13.0% |
@@ -17,13 +17,13 @@ Built 2026-11-10T11:48:20.850Z — **17289 objects**
 
 | | count | share |
 |---|---:|---:|
-| Europe | 7045 | 40.7% |
-| East Asia | 2586 | 15.0% |
-| Iran, Central & South Asia | 2072 | 12.0% |
-| Africa | 1657 | 9.6% |
-| Near East & Mediterranean Asia | 1217 | 7.0% |
-| Latin America & Caribbean | 895 | 5.2% |
-| North America | 870 | 5.0% |
+| Europe | 7070 | 40.8% |
+| East Asia | 2591 | 14.9% |
+| Iran, Central & South Asia | 2075 | 12.0% |
+| Africa | 1661 | 9.6% |
+| Near East & Mediterranean Asia | 1222 | 7.0% |
+| Latin America & Caribbean | 896 | 5.2% |
+| North America | 875 | 5.0% |
 | Southeast Asia | 550 | 3.2% |
 | Oceania | 397 | 2.3% |
 
@@ -31,19 +31,19 @@ Built 2026-11-10T11:48:20.850Z — **17289 objects**
 
 | | count | share |
 |---|---:|---:|
-| Western & Central Europe | 3649 | 21.1% |
-| East Asia | 2586 | 15.0% |
-| Mediterranean Europe | 2346 | 13.6% |
-| Near East, Anatolia & Arabia | 1217 | 7.0% |
+| Western & Central Europe | 3662 | 21.1% |
+| East Asia | 2591 | 14.9% |
+| Mediterranean Europe | 2356 | 13.6% |
+| Near East, Anatolia & Arabia | 1222 | 7.0% |
+| North Africa & the Nile | 1203 | 6.9% |
 | South Asia | 1200 | 6.9% |
-| North Africa & the Nile | 1199 | 6.9% |
-| Iran, Central Asia & the Steppe | 872 | 5.0% |
-| North America & the Arctic | 870 | 5.0% |
-| Britain, Ireland & Scandinavia | 842 | 4.9% |
+| North America & the Arctic | 875 | 5.0% |
+| Iran, Central Asia & the Steppe | 875 | 5.0% |
+| Britain, Ireland & Scandinavia | 844 | 4.9% |
 | Southeast Asia | 550 | 3.2% |
-| Andes & Pacific South America | 457 | 2.6% |
+| Andes & Pacific South America | 458 | 2.6% |
 | Mexico & Central America | 430 | 2.5% |
-| Polynesia, Micronesia & Aotearoa | 286 | 1.7% |
+| Polynesia, Micronesia & Aotearoa | 286 | 1.6% |
 | Eastern Europe | 208 | 1.2% |
 | Central Africa | 195 | 1.1% |
 | West Africa | 172 | 1.0% |
@@ -58,34 +58,34 @@ Built 2026-11-10T11:48:20.850Z — **17289 objects**
 
 | | count | share |
 |---|---:|---:|
-| sculpture | 3510 | 20.3% |
-| ceramic | 3241 | 18.7% |
-| metal | 2977 | 17.2% |
-| painting | 2873 | 16.6% |
-| textile | 2046 | 11.8% |
-| paper | 1711 | 9.9% |
-| other | 931 | 5.4% |
+| sculpture | 3523 | 20.3% |
+| ceramic | 3245 | 18.7% |
+| metal | 2990 | 17.2% |
+| painting | 2877 | 16.6% |
+| textile | 2049 | 11.8% |
+| paper | 1714 | 9.9% |
+| other | 939 | 5.4% |
 
 ### By era
 
 | | count | share |
 |---|---:|---:|
-| a. before 1000 BCE | 823 | 4.8% |
-| b. 1000–1 BCE | 1257 | 7.3% |
-| c. 1–500 CE | 772 | 4.5% |
-| d. 500–1000 | 1031 | 6.0% |
-| e. 1000–1500 | 2275 | 13.2% |
-| f. 1500–1800 | 5667 | 32.8% |
-| g. 1800–1950 | 5464 | 31.6% |
+| a. before 1000 BCE | 827 | 4.8% |
+| b. 1000–1 BCE | 1265 | 7.3% |
+| c. 1–500 CE | 773 | 4.5% |
+| d. 500–1000 | 1031 | 5.9% |
+| e. 1000–1500 | 2284 | 13.2% |
+| f. 1500–1800 | 5686 | 32.8% |
+| g. 1800–1950 | 5471 | 31.6% |
 
 ### Precision (radius km)
 
 | | count | share |
 |---|---:|---:|
-| ≤500 (region/country) | 7579 | 43.8% |
-| ≤60 (city/site) | 4106 | 23.7% |
-| >500 (large country/area) | 2818 | 16.3% |
-| ≤200 (district/people) | 2786 | 16.1% |
+| ≤500 (region/country) | 7595 | 43.8% |
+| ≤60 (city/site) | 4131 | 23.8% |
+| >500 (large country/area) | 2822 | 16.3% |
+| ≤200 (district/people) | 2789 | 16.1% |
 
 ### Top buckets
 
@@ -134,12 +134,12 @@ Built 2026-11-10T11:48:20.850Z — **17289 objects**
 
 ### Rejected
 
-- excluded object type: 613
-- could not geocode: 1693
+- excluded object type: 615
+- could not geocode: 1694
 - date too vague: 1284
-- date out of range: 586
+- date out of range: 587
 - duplicate title in bucket: 4948
-- bucket cap: 2673
+- bucket cap: 2676
 
 ### Most common unmatched place/culture strings (add to scripts/gazetteer.ts)
 
@@ -207,6 +207,7 @@ Built 2026-11-10T11:48:20.850Z — **17289 objects**
 - `entered` × 1
 - `after` × 1
 - `registered new mark` × 1
+- `eastern central asia` × 1
 - `gloucester` × 1
 - `ipswich` × 1
 - `rochester` × 1
