@@ -1,12 +1,12 @@
 # Pool report
 
-Built 2026-11-12T11:52:30.464Z — **17349 objects**
+Built 2026-11-13T11:34:34.948Z — **17352 objects**
 
 ### By source
 
 | | count | share |
 |---|---:|---:|
-| met | 6584 | 38.0% |
+| met | 6587 | 38.0% |
 | vam | 3601 | 20.8% |
 | aic | 3115 | 18.0% |
 | cma | 2250 | 13.0% |
@@ -17,7 +17,7 @@ Built 2026-11-12T11:52:30.464Z — **17349 objects**
 
 | | count | share |
 |---|---:|---:|
-| Europe | 7077 | 40.8% |
+| Europe | 7080 | 40.8% |
 | East Asia | 2591 | 14.9% |
 | Iran, Central & South Asia | 2075 | 12.0% |
 | Africa | 1662 | 9.6% |
@@ -31,9 +31,9 @@ Built 2026-11-12T11:52:30.464Z — **17349 objects**
 
 | | count | share |
 |---|---:|---:|
-| Western & Central Europe | 3666 | 21.1% |
+| Western & Central Europe | 3668 | 21.1% |
 | East Asia | 2591 | 14.9% |
-| Mediterranean Europe | 2359 | 13.6% |
+| Mediterranean Europe | 2360 | 13.6% |
 | Near East, Anatolia & Arabia | 1223 | 7.0% |
 | North Africa & the Nile | 1203 | 6.9% |
 | South Asia | 1200 | 6.9% |
@@ -60,8 +60,8 @@ Built 2026-11-12T11:52:30.464Z — **17349 objects**
 |---|---:|---:|
 | sculpture | 3526 | 20.3% |
 | ceramic | 3247 | 18.7% |
-| metal | 2991 | 17.2% |
-| painting | 2877 | 16.6% |
+| metal | 2993 | 17.2% |
+| painting | 2878 | 16.6% |
 | textile | 2049 | 11.8% |
 | paper | 1717 | 9.9% |
 | other | 942 | 5.4% |
@@ -75,15 +75,15 @@ Built 2026-11-12T11:52:30.464Z — **17349 objects**
 | c. 1–500 CE | 773 | 4.5% |
 | d. 500–1000 | 1031 | 5.9% |
 | e. 1000–1500 | 2287 | 13.2% |
-| f. 1500–1800 | 5692 | 32.8% |
+| f. 1500–1800 | 5695 | 32.8% |
 | g. 1800–1950 | 5473 | 31.5% |
 
 ### Precision (radius km)
 
 | | count | share |
 |---|---:|---:|
-| ≤500 (region/country) | 7599 | 43.8% |
-| ≤60 (city/site) | 4137 | 23.8% |
+| ≤500 (region/country) | 7601 | 43.8% |
+| ≤60 (city/site) | 4138 | 23.8% |
 | >500 (large country/area) | 2823 | 16.3% |
 | ≤200 (district/people) | 2790 | 16.1% |
 
@@ -139,7 +139,7 @@ Built 2026-11-12T11:52:30.464Z — **17349 objects**
 - date too vague: 1284
 - date out of range: 587
 - duplicate title in bucket: 4948
-- bucket cap: 2678
+- bucket cap: 2679
 
 ### Most common unmatched place/culture strings (add to scripts/gazetteer.ts)
 
