@@ -1,14 +1,14 @@
 # Pool report
 
-Built 2026-11-13T11:34:34.948Z — **17352 objects**
+Built 2026-11-14T10:59:03.521Z — **17354 objects**
 
 ### By source
 
 | | count | share |
 |---|---:|---:|
-| met | 6587 | 38.0% |
+| met | 6589 | 38.0% |
 | vam | 3601 | 20.8% |
-| aic | 3115 | 18.0% |
+| aic | 3115 | 17.9% |
 | cma | 2250 | 13.0% |
 | rijks | 1470 | 8.5% |
 | tepapa | 329 | 1.9% |
@@ -19,11 +19,11 @@ Built 2026-11-13T11:34:34.948Z — **17352 objects**
 |---|---:|---:|
 | Europe | 7080 | 40.8% |
 | East Asia | 2591 | 14.9% |
-| Iran, Central & South Asia | 2075 | 12.0% |
+| Iran, Central & South Asia | 2076 | 12.0% |
 | Africa | 1662 | 9.6% |
 | Near East & Mediterranean Asia | 1223 | 7.0% |
 | Latin America & Caribbean | 897 | 5.2% |
-| North America | 877 | 5.1% |
+| North America | 878 | 5.1% |
 | Southeast Asia | 550 | 3.2% |
 | Oceania | 397 | 2.3% |
 
@@ -36,8 +36,8 @@ Built 2026-11-13T11:34:34.948Z — **17352 objects**
 | Mediterranean Europe | 2360 | 13.6% |
 | Near East, Anatolia & Arabia | 1223 | 7.0% |
 | North Africa & the Nile | 1203 | 6.9% |
-| South Asia | 1200 | 6.9% |
-| North America & the Arctic | 877 | 5.1% |
+| South Asia | 1201 | 6.9% |
+| North America & the Arctic | 878 | 5.1% |
 | Iran, Central Asia & the Steppe | 875 | 5.0% |
 | Britain, Ireland & Scandinavia | 844 | 4.9% |
 | Southeast Asia | 550 | 3.2% |
@@ -58,13 +58,13 @@ Built 2026-11-13T11:34:34.948Z — **17352 objects**
 
 | | count | share |
 |---|---:|---:|
-| sculpture | 3526 | 20.3% |
+| sculpture | 3527 | 20.3% |
 | ceramic | 3247 | 18.7% |
 | metal | 2993 | 17.2% |
 | painting | 2878 | 16.6% |
 | textile | 2049 | 11.8% |
 | paper | 1717 | 9.9% |
-| other | 942 | 5.4% |
+| other | 943 | 5.4% |
 
 ### By era
 
@@ -74,18 +74,18 @@ Built 2026-11-13T11:34:34.948Z — **17352 objects**
 | b. 1000–1 BCE | 1265 | 7.3% |
 | c. 1–500 CE | 773 | 4.5% |
 | d. 500–1000 | 1031 | 5.9% |
-| e. 1000–1500 | 2287 | 13.2% |
+| e. 1000–1500 | 2288 | 13.2% |
 | f. 1500–1800 | 5695 | 32.8% |
-| g. 1800–1950 | 5473 | 31.5% |
+| g. 1800–1950 | 5474 | 31.5% |
 
 ### Precision (radius km)
 
 | | count | share |
 |---|---:|---:|
 | ≤500 (region/country) | 7601 | 43.8% |
-| ≤60 (city/site) | 4138 | 23.8% |
+| ≤60 (city/site) | 4139 | 23.9% |
 | >500 (large country/area) | 2823 | 16.3% |
-| ≤200 (district/people) | 2790 | 16.1% |
+| ≤200 (district/people) | 2791 | 16.1% |
 
 ### Top buckets
 
