@@ -1,14 +1,14 @@
 # Pool report
 
-Built 2026-11-17T12:30:02.961Z — **17616 objects**
+Built 2026-11-18T12:17:41.507Z — **17645 objects**
 
 ### By source
 
 | | count | share |
 |---|---:|---:|
-| met | 6851 | 38.9% |
+| met | 6881 | 39.0% |
 | vam | 3601 | 20.4% |
-| aic | 3115 | 17.7% |
+| aic | 3114 | 17.6% |
 | cma | 2250 | 12.8% |
 | rijks | 1470 | 8.3% |
 | tepapa | 329 | 1.9% |
@@ -17,13 +17,13 @@ Built 2026-11-17T12:30:02.961Z — **17616 objects**
 
 | | count | share |
 |---|---:|---:|
-| Europe | 7201 | 40.9% |
-| East Asia | 2594 | 14.7% |
-| Iran, Central & South Asia | 2088 | 11.9% |
-| Africa | 1725 | 9.8% |
-| Near East & Mediterranean Asia | 1241 | 7.0% |
-| Latin America & Caribbean | 934 | 5.3% |
-| North America | 878 | 5.0% |
+| Europe | 7210 | 40.9% |
+| East Asia | 2596 | 14.7% |
+| Iran, Central & South Asia | 2095 | 11.9% |
+| Africa | 1731 | 9.8% |
+| Near East & Mediterranean Asia | 1244 | 7.1% |
+| Latin America & Caribbean | 935 | 5.3% |
+| North America | 879 | 5.0% |
 | Southeast Asia | 552 | 3.1% |
 | Oceania | 403 | 2.3% |
 
@@ -31,22 +31,22 @@ Built 2026-11-17T12:30:02.961Z — **17616 objects**
 
 | | count | share |
 |---|---:|---:|
-| Western & Central Europe | 3727 | 21.2% |
-| East Asia | 2594 | 14.7% |
-| Mediterranean Europe | 2412 | 13.7% |
-| North Africa & the Nile | 1260 | 7.2% |
-| Near East, Anatolia & Arabia | 1241 | 7.0% |
-| South Asia | 1210 | 6.9% |
-| North America & the Arctic | 878 | 5.0% |
-| Iran, Central Asia & the Steppe | 878 | 5.0% |
-| Britain, Ireland & Scandinavia | 853 | 4.8% |
+| Western & Central Europe | 3733 | 21.2% |
+| East Asia | 2596 | 14.7% |
+| Mediterranean Europe | 2414 | 13.7% |
+| North Africa & the Nile | 1265 | 7.2% |
+| Near East, Anatolia & Arabia | 1244 | 7.1% |
+| South Asia | 1214 | 6.9% |
+| Iran, Central Asia & the Steppe | 881 | 5.0% |
+| North America & the Arctic | 879 | 5.0% |
+| Britain, Ireland & Scandinavia | 854 | 4.8% |
 | Southeast Asia | 552 | 3.1% |
-| Andes & Pacific South America | 485 | 2.8% |
-| Mexico & Central America | 441 | 2.5% |
+| Andes & Pacific South America | 485 | 2.7% |
+| Mexico & Central America | 442 | 2.5% |
 | Polynesia, Micronesia & Aotearoa | 289 | 1.6% |
 | Eastern Europe | 209 | 1.2% |
 | Central Africa | 197 | 1.1% |
-| West Africa | 176 | 1.0% |
+| West Africa | 177 | 1.0% |
 | New Guinea & Melanesia | 111 | 0.6% |
 | East Africa & the Horn | 68 | 0.4% |
 | Southern Africa | 24 | 0.1% |
@@ -58,34 +58,34 @@ Built 2026-11-17T12:30:02.961Z — **17616 objects**
 
 | | count | share |
 |---|---:|---:|
-| sculpture | 3599 | 20.4% |
-| ceramic | 3302 | 18.7% |
-| metal | 3079 | 17.5% |
-| painting | 2890 | 16.4% |
-| textile | 2066 | 11.7% |
-| paper | 1729 | 9.8% |
-| other | 951 | 5.4% |
+| sculpture | 3611 | 20.5% |
+| ceramic | 3303 | 18.7% |
+| metal | 3083 | 17.5% |
+| painting | 2893 | 16.4% |
+| textile | 2067 | 11.7% |
+| paper | 1735 | 9.8% |
+| other | 953 | 5.4% |
 
 ### By era
 
 | | count | share |
 |---|---:|---:|
-| a. before 1000 BCE | 875 | 5.0% |
-| b. 1000–1 BCE | 1306 | 7.4% |
-| c. 1–500 CE | 807 | 4.6% |
-| d. 500–1000 | 1053 | 6.0% |
-| e. 1000–1500 | 2325 | 13.2% |
-| f. 1500–1800 | 5751 | 32.6% |
-| g. 1800–1950 | 5499 | 31.2% |
+| a. before 1000 BCE | 881 | 5.0% |
+| b. 1000–1 BCE | 1308 | 7.4% |
+| c. 1–500 CE | 808 | 4.6% |
+| d. 500–1000 | 1055 | 6.0% |
+| e. 1000–1500 | 2329 | 13.2% |
+| f. 1500–1800 | 5757 | 32.6% |
+| g. 1800–1950 | 5507 | 31.2% |
 
 ### Precision (radius km)
 
 | | count | share |
 |---|---:|---:|
-| ≤500 (region/country) | 7697 | 43.7% |
-| ≤60 (city/site) | 4234 | 24.0% |
-| >500 (large country/area) | 2847 | 16.2% |
-| ≤200 (district/people) | 2838 | 16.1% |
+| ≤500 (region/country) | 7708 | 43.7% |
+| ≤60 (city/site) | 4245 | 24.1% |
+| >500 (large country/area) | 2850 | 16.2% |
+| ≤200 (district/people) | 2842 | 16.1% |
 
 ### Top buckets
 
@@ -134,12 +134,12 @@ Built 2026-11-17T12:30:02.961Z — **17616 objects**
 
 ### Rejected
 
-- excluded object type: 629
+- excluded object type: 631
 - could not geocode: 1749
 - date too vague: 1331
 - date out of range: 587
-- duplicate title in bucket: 4996
-- bucket cap: 2711
+- duplicate title in bucket: 4997
+- bucket cap: 2717
 
 ### Most common unmatched place/culture strings (add to scripts/gazetteer.ts)
 
